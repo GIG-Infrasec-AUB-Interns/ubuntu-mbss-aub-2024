@@ -3,6 +3,10 @@
 # Benchmark tests on Ubuntu 22.04.4 based on
 # CIS Benchmarks https://downloads.cisecurity.org/#/
 
+# to run, please run the commands below on the terminal
+# su root
+# chmod +x runtests.sh
+# ./runtests.sh
 
 function runTests() {
     local FILES=("$@") # store all file paths in array
@@ -25,11 +29,11 @@ echo ""
 
 # 1.1 Filesystem
 echo "Running Filesystem tests (Chapter 1.1)..."
-runTests ./chap1/chap1_1/chap1_1_1/*.sh
-runTests ./chap1/chap1_1/chap1_1_2/*.sh
+runTests ./tests/chap1/chap1_1/chap1_1_1/*.sh
+runTests ./tests/chap1/chap1_1/chap1_1_2/*.sh
 
 # 1.2 Package Management
 echo "Running Package Management tests (Chapter 1.2)..."
-runTests ./chap1/chap1_2/chap1_2_1/*.sh
-runTests ./chap1/chap1_2/chap1_2_2/*.sh
+runTests ./tests/chap1/chap1_2/chap1_2_1/*.sh
+runTests ./tests/chap1/chap1_2/chap1_2_2/*.sh
 
