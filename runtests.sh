@@ -4,6 +4,7 @@
 # CIS Benchmarks https://downloads.cisecurity.org/#/
 
 # to run, please run the commands below on the terminal
+
 # su root
 # chmod +x runtests.sh 
 # ./runtests.sh
