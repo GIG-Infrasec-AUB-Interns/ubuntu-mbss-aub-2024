@@ -5,7 +5,7 @@
 
 # to run, please run the commands below on the terminal
 # su root
-# chmod +x runtests.sh
+# chmod +x runtests.sh 
 # ./runtests.sh
 
 function runTests() {
