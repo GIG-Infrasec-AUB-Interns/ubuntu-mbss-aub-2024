@@ -1,9 +1,9 @@
 #! /usr/bin/bash
 
-# 1.1.1.1 [REMEDIATION] Ensure freevxfs kernel module is not available 
+# 1.1.1.3 [REMEDIATION] Ensure cramfs kernel module is not available
 
 {
-    l_mname="freevxfs" # set module name
+    l_mname="hfs" # set module name
     l_mtype="fs" # set module type
     l_mpath="/lib/modules/**/kernel/$l_mtype"
     l_mpname="$(tr '-' '_' <<< "$l_mname")"
@@ -34,6 +34,7 @@
             echo -e "blacklist $l_mname" >> /etc/modprobe.d/"$l_mpname".conf
         fi
     }
+
     # Check if the module exists on the system
     for l_mdir in $l_mpath; do
         if [ -d "$l_mdir/$l_mndir" ] && [ -n "$(ls -A $l_mdir/$l_mndir)" ]; then
