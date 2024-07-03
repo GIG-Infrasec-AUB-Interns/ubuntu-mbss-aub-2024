@@ -3,6 +3,7 @@
 # 1.1.1.1 Ensure cramfs kernel module is not available
 
 {
+    echo "Ensuring cramfs kernel module is not available (1.1.1.1)..."
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
     l_mname="cramfs" # set module name
     l_mtype="fs" # set module type

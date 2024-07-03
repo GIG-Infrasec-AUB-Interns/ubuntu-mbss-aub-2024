@@ -3,6 +3,7 @@
 # 1.1.1.3 Ensure hfs kernel module is not available
 
 {
+    echo "Ensuring hfs kernel module is not available (1.1.1.3)..."
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
     l_mname="hfs" # set module name
     l_mtype="fs" # set module type

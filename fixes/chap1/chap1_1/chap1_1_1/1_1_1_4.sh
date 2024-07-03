@@ -3,6 +3,7 @@
 # 1.1.1.4 [REMEDIATION]  Ensure hfsplus kernel module is not available
 
 {
+    echo "[REMEDIATION] Ensuring hfsplus kernel module is not available (1.1.1.4)..."
     l_mname="hfsplus" # set module name
     l_mtype="fs" # set module type
     l_mpath="/lib/modules/**/kernel/$l_mtype"

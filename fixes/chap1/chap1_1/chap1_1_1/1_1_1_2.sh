@@ -1,8 +1,9 @@
 #! /usr/bin/bash
 
-# 1.1.1.1 [REMEDIATION] Ensure freevxfs kernel module is not available 
+# 1.1.1.2 [REMEDIATION] Ensure freevxfs kernel module is not available 
 
 {
+    echo "[REMEDIATION] Ensuring freevxfs kernel module is not available (1.1.1.2)..."
     l_mname="freevxfs" # set module name
     l_mtype="fs" # set module type
     l_mpath="/lib/modules/**/kernel/$l_mtype"

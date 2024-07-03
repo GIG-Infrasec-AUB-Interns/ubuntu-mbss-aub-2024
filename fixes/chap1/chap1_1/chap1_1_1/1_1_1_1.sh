@@ -1,8 +1,8 @@
 #! /usr/bin/bash
 
 # 1.1.1.1 [REMEDIATION] Ensure cramfs kernel module is not available
-
 {
+    echo "[REMEDIATION] Ensuring cramfs kernel module is not available (1.1.1.1)..."
     l_mname="cramfs" # set module name
     l_mtype="fs" # set module type
     l_mpath="/lib/modules/**/kernel/$l_mtype"

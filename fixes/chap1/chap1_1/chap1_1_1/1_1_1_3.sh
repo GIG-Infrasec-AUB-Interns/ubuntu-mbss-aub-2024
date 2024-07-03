@@ -1,8 +1,9 @@
 #! /usr/bin/bash
 
-# 1.1.1.3 [REMEDIATION] Ensure cramfs kernel module is not available
+# 1.1.1.3 [REMEDIATION] Ensure hfs kernel module is not available
 
 {
+    echo "[REMEDIATION] Ensuring hfs kernel module is not available (1.1.1.3)..."
     l_mname="hfs" # set module name
     l_mtype="fs" # set module type
     l_mpath="/lib/modules/**/kernel/$l_mtype"
