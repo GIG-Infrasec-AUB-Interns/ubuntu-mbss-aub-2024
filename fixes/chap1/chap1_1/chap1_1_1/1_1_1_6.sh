@@ -1,10 +1,10 @@
 #! /usr/bin/bash
 
-# 1.1.1.5 [REMEDIATION] Ensure jffs2 kernel module is not available
+# 1.1.1.6 [REMEDIATION] Ensure squashfs kernel module is not available
 
 {
-    echo "[REMEDIATION] Ensuring jffs2 kernel module is not available (1.1.1.5)..."
-    l_mname="jffs2" # set module name
+    echo "[REMEDIATION] Ensuring squashfs kernel module is not available (1.1.1.6)..."
+    l_mname="squashfs" # set module name
     l_mtype="fs" # set module type
     l_mpath="/lib/modules/**/kernel/$l_mtype"
     l_mpname="$(tr '-' '_' <<< "$l_mname")"
@@ -14,6 +14,7 @@
         # If the module is currently loadable, add "install {MODULE_NAME} /bin/false" to a file in "/etc/modprobe.d"
         l_loadable="$(modprobe -n -v "$l_mname")"
         [ "$(wc -l <<< "$l_loadable")" -gt "1" ] && l_loadable="$(grep -P -- "(^\h*install|\b$l_mname)\b" <<< "$l_loadable")"
+        
         if ! grep -Pq -- '^\h*install \/bin\/(true|false)' <<< "$l_loadable"; then
             echo -e "\n - setting module: \"$l_mname\" to be not loadable"
             echo -e "install $l_mname /bin/false" >> /etc/modprobe.d/"$l_mpname".conf
