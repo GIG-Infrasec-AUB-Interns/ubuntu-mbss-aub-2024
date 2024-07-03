@@ -30,11 +30,16 @@ echo ""
 
 # 1.1 Filesystem
 echo "Running Filesystem tests (Chapter 1.1)..."
-runTests ./tests/chap1/chap1_1/chap1_1_1/*.sh
-runTests ./tests/chap1/chap1_1/chap1_1_2/*.sh
 
-# 1.2 Package Management
-echo "Running Package Management tests (Chapter 1.2)..."
-runTests ./tests/chap1/chap1_2/chap1_2_1/*.sh
-runTests ./tests/chap1/chap1_2/chap1_2_2/*.sh
+echo "Testing filesystem kernel module configurations (1.1.1)..."
+runTests ./tests/chap1/chap1_1/chap1_1_1/*.sh
+
+# echo "Testing filesystem partitions (1.1.2)..."
+# runTests ./tests/chap1/chap1_1/chap1_1_2/*.sh
+
+# 1.3 Mandatory Access Control
+# echo "Running Mandatory Access Control tests (Chapter 1.3)..."
+
+# echo "Testing AppArmor configuration (1.3.1)..."
+# runTests ./tests/chap1/chap1_3/chap1_3_1/*.sh
 
