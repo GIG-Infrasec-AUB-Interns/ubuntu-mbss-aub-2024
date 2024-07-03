@@ -5,38 +5,32 @@
 {
     echo "Ensuring /tmp is a separate partition (1.1.2.1.1)..."
 
-    output1=$(findmnt -kn /tmp)
-    output2=$(systemctl is-enabled tmp.mount)
+    findmnt_output=$(findmnt -kn /tmp)
+    systemctl_output=$(systemctl is-enabled tmp.mount 2>/dev/null)
 
     expected_output="/tmp tmpfs tmpfs rw,nosuid,nodev,noexec"
     expected_generated="generated"
     expected_disabled="disabled"
     expected_masked="masked"
 
-    # Check if output1 matches the expected output and output2 is not masked or disabled
-    if [ "$output1" != "$expected_output" ] || [ "$output2" == "$expected_disabled" ] || [ "$output2" == "$expected_masked" ]; then
-        echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n"$output1"\n"$output2"\n"
-        # Remediation
-        read -p "Run remediation script for Test 1.1.2.1.1? (Y/N): " ANSWER
-        case "$ANSWER" in
-            [Yy]*)
-                echo "Commencing remediation for Test 1.1.2.1.1..."
-                
-                FIXES_SCRIPT="$(realpath fixes/chap1/chap1_1/chap1_1_2/chap1_1_2_1/1_1_2_1_1.sh)"
-                if [ -f "$FIXES_SCRIPT" ]; then
-                    chmod +x "$FIXES_SCRIPT"
-                    "$FIXES_SCRIPT"
-                else
-                    echo "Error: $FIXES_SCRIPT is not found."
-                fi
-                echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                ;;
-            *)
-                echo "Remediation not commenced"
-                echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                ;;
-        esac
+    if [[ -n "$findmnt_output" ]]; then
+        echo "/tmp is mounted as a separate partition."
+        echo "Output from findmnt:"
+        echo "$findmnt_output"
+        
+        if [[ "$systemctl_output" == "generated" || "$systemctl_output" == "enabled" || "$systemctl_output" == "static" ]]; then
+            echo "systemd will mount /tmp partition at boot time."
+            echo "Output from systemctl:"
+            echo "$systemctl_output"
+            echo "Audit Result: PASS"
+        else
+            echo "systemd will NOT mount /tmp partition at boot time."
+            echo "Output from systemctl:"
+            echo "$systemctl_output"
+            echo "Audit Result: FAIL"
+        fi
     else
-        echo -e "\n- Audit Result:\n ** PASS **\n"$output1"\n"$output2"\n"
+        echo "/tmp is NOT mounted as a separate partition."
+        echo "Audit Result: FAIL"
     fi
 }
