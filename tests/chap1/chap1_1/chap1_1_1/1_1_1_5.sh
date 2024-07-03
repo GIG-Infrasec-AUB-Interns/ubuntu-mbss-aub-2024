@@ -1,11 +1,11 @@
 #! /usr/bin/bash
 
-# 1.1.1.4 Ensure hfsplus kernel module is not available
+# 1.1.1.5 Ensure jffs2 kernel module is not available
 
 {
-    echo "Ensuring hfsplus kernel module is not available (1.1.1.4)..."
+    echo "Ensuring jffs2 kernel module is not available (1.1.1.5)..."
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
-    l_mname="hfsplus" # set module name
+    l_mname="jffs2" # set module name
     l_mtype="fs" # set module type
     l_searchloc="/lib/modprobe.d/*.conf /usr/local/lib/modprobe.d/*.conf /run/modprobe.d/*.conf/etc/modprobe.d/*.conf"
     l_mpath="/lib/modules/**/kernel/$l_mtype"
@@ -65,12 +65,12 @@
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
 
         # Remediation
-        read -p "Run remediation script for Test 1.1.1.4? (Y/N): " ANSWER
+        read -p "Run remediation script for Test 1.1.1.5? (Y/N): " ANSWER
         case "$ANSWER" in
             [Yy]*)
-                echo "Commencing remediation for Test 1.1.1.4..."
+                echo "Commencing remediation for Test 1.1.1.5..."
                 
-                FIXES_SCRIPT="$(realpath fixes/chap1/chap1_1/chap1_1_1/1_1_1_4.sh)"
+                FIXES_SCRIPT="$(realpath fixes/chap1/chap1_1/chap1_1_1/1_1_1_5.sh)"
                 if [ -f "$FIXES_SCRIPT" ]; then
                     chmod +x "$FIXES_SCRIPT"
                     "$FIXES_SCRIPT"
