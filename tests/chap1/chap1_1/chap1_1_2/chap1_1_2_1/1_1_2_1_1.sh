@@ -7,27 +7,35 @@
 
     findmnt_output=$(findmnt -kn /tmp)
     systemctl_output=$(systemctl is-enabled tmp.mount 2>/dev/null)
-
-    expected_output="/tmp tmpfs tmpfs rw,nosuid,nodev,noexec"
-    expected_generated="generated"
-    expected_disabled="disabled"
-    expected_masked="masked"
+    fstab_output=$(grep ' /tmp ' /etc/fstab)
 
     if [[ -n "$findmnt_output" ]]; then
         echo "/tmp is mounted as a separate partition."
         echo "Output from findmnt:"
         echo "$findmnt_output"
-        
-        if [[ "$systemctl_output" == "generated" || "$systemctl_output" == "enabled" || "$systemctl_output" == "static" ]]; then
-            echo "systemd will mount /tmp partition at boot time."
-            echo "Output from systemctl:"
-            echo "$systemctl_output"
-            echo "Audit Result: PASS"
+
+        if [[ -n "$systemctl_output" ]]; then
+            if [[ "$systemctl_output" == "generated" || "$systemctl_output" == "enabled" || "$systemctl_output" == "static" ]]; then
+                echo "systemd will mount /tmp partition at boot time."
+                echo "Output from systemctl:"
+                echo "$systemctl_output"
+                echo "Audit Result: PASS"
+            else
+                echo "systemd will NOT mount /tmp partition at boot time."
+                echo "Output from systemctl:"
+                echo "$systemctl_output"
+                echo "Audit Result: FAIL"
+            fi
         else
-            echo "systemd will NOT mount /tmp partition at boot time."
-            echo "Output from systemctl:"
-            echo "$systemctl_output"
-            echo "Audit Result: FAIL"
+            echo "No explicit systemd unit found for /tmp."
+            if [[ -n "$fstab_output" ]]; then
+                echo "/tmp is configured in /etc/fstab:"
+                echo "$fstab_output"
+                echo "Audit Result: PASS"
+            else
+                echo "/tmp is not configured in /etc/fstab."
+                echo "Audit Result: FAIL"
+            fi
         fi
     else
         echo "/tmp is NOT mounted as a separate partition."
