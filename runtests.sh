@@ -50,6 +50,9 @@ runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_6/*.sh
 echo "Testing config of /var/log/audit (1.1.2.7)..."
 runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_7/*.sh
 
+echo "Testing Mandatory Access Control (1.3)..."
+echo "Testing AppArmor configuration (1.3.1)..."
+runTests ./tests/chap1/chap1_3/chap1_3_1/*.sh
 
 # 1.3 Mandatory Access Control
 # echo "Running Mandatory Access Control tests (Chapter 1.3)..."
