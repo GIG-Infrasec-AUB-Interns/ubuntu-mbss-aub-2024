@@ -33,6 +33,7 @@ function runFix() {
         echo "/dev/shm is mounted as a separate partition."
         echo "Output from findmnt:"
         echo "$findmnt_output"
+        echo "Audit Result: PASS"
     else
         echo "/dev/shm is NOT mounted as a separate partition."
         echo "Audit Result: FAIL"
