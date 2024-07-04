@@ -1,10 +1,11 @@
 #! /usr/bin/bash
 
-# 1.1.1.1 [REMEDIATION] Ensure cramfs kernel module is not available
+# 1.1.1.8 [REMEDIATION] Ensure usb-storage kernel module is not available
+
 {
-    echo "[REMEDIATION] Ensuring cramfs kernel module is not available (1.1.1.1)..."
-    l_mname="cramfs" # set module name
-    l_mtype="fs" # set module type
+    echo "[REMEDIATION] Ensuring usb-storage kernel module is not available (1.1.1.8)..."
+    l_mname="usb-storage" # set module name
+    l_mtype="drivers" # set module type
     l_mpath="/lib/modules/**/kernel/$l_mtype"
     l_mpname="$(tr '-' '_' <<< "$l_mname")"
     l_mndir="$(tr '-' '/' <<< "$l_mname")"
@@ -13,13 +14,12 @@
         # If the module is currently loadable, add "install {MODULE_NAME} /bin/false" to a file in "/etc/modprobe.d"
         l_loadable="$(modprobe -n -v "$l_mname")"
         [ "$(wc -l <<< "$l_loadable")" -gt "1" ] && l_loadable="$(grep -P -- "(^\h*install|\b$l_mname)\b" <<< "$l_loadable")"
-        
         if ! grep -Pq -- '^\h*install \/bin\/(true|false)' <<< "$l_loadable"; then
             echo -e "\n - setting module: \"$l_mname\" to be not loadable"
             echo -e "install $l_mname /bin/false" >> /etc/modprobe.d/"$l_mpname".conf
         fi
     }
-    
+
     module_loaded_fix() {
         # If the module is currently loaded, unload the module
         if lsmod | grep "$l_mname" > /dev/null 2>&1; then
@@ -46,7 +46,7 @@
                 module_loaded_fix
             fi
         else
-            echo -e "\n - module: \"$l_mname\" doesn't exist in \"$l_mdir\"\n"
+        echo -e "\n - module: \"$l_mname\" doesn't exist in \"$l_mdir\"\n"
         fi
     done
     echo -e "\n - remediation of module: \"$l_mname\" complete\n"

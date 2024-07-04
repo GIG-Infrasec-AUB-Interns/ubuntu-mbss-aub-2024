@@ -1,16 +1,17 @@
 #! /usr/bin/bash
 
-# 1.1.1.2 Ensure freevxfs kernel module is not available
+# 1.1.1.3 Ensure hfs kernel module is not available
 
 {
-    echo "Ensuring freevxfs kernel module is not available (1.1.1.2)..."
+    echo "Ensuring hfs kernel module is not available (1.1.1.3)..."
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
-    l_mname="freevxfs" # set module name
+    l_mname="hfs" # set module name
     l_mtype="fs" # set module type
     l_searchloc="/lib/modprobe.d/*.conf /usr/local/lib/modprobe.d/*.conf /run/modprobe.d/*.conf/etc/modprobe.d/*.conf"
     l_mpath="/lib/modules/**/kernel/$l_mtype"
     l_mpname="$(tr '-' '_' <<< "$l_mname")"
     l_mndir="$(tr '-' '/' <<< "$l_mname")"
+
     module_loadable_chk() {
         # Check if the module is currently loadable
         l_loadable="$(modprobe -n -v "$l_mname")"
@@ -22,6 +23,7 @@
             l_output2="$l_output2\n - module: \"$l_mname\" is loadable: \"$l_loadable\""
         fi
     }
+
     module_loaded_chk() {
         # Check if the module is currently loaded
         if ! lsmod | grep "$l_mname" > /dev/null 2>&1; then
@@ -40,6 +42,7 @@
             l_output2="$l_output2\n - module: \"$l_mname\" is not deny listed"
         fi
     }
+
     # Check if the module exists on the system
     for l_mdir in $l_mpath; do
         if [ -d "$l_mdir/$l_mndir" ] && [ -n "$(ls -A $l_mdir/$l_mndir)" ]; then
@@ -53,7 +56,7 @@
             l_output="$l_output\n - module: \"$l_mname\" doesn't exist in \"$l_mdir\""
         fi
     done
-    
+
     # Report results. If no failures output in l_output2, we pass
     [ -n "$l_output3" ] && echo -e "\n\n -- INFO --\n - module: \"$l_mname\" exists in:$l_output3"
     if [ -z "$l_output2" ]; then
@@ -63,12 +66,12 @@
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
 
         # Remediation
-        read -p "Run remediation script for Test 1.1.1.2? (Y/N): " ANSWER
+        read -p "Run remediation script for Test 1.1.1.3? (Y/N): " ANSWER
         case "$ANSWER" in
             [Yy]*)
-                echo "Commencing remediation for Test 1.1.1.2..."
+                echo "Commencing remediation for Test 1.1.1.3..."
                 
-                FIXES_SCRIPT="$(realpath fixes/chap1/chap1_1/chap1_1_1/1_1_1_2.sh)"
+                FIXES_SCRIPT="$(realpath fixes/chap1/chap1_1/chap1_1_1/1_1_1_3.sh)"
                 if [ -f "$FIXES_SCRIPT" ]; then
                     chmod +x "$FIXES_SCRIPT"
                     "$FIXES_SCRIPT"
