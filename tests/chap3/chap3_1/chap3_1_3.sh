@@ -6,7 +6,7 @@
     eservice=$(systemctl is-enabled bluetooth.service 2>/dev/null | grep 'enabled')
     aservice=$(systemctl is-active bluetooth.service 2>/dev/null | grep '^active')
     echo $eservice
-    if [[ "$eservice" == "enabled"]]; then
+    if [[ "$eservice" == "enabled" ]]; then
         systemctl stop bluetooth.service
         systemctl mask bluetooth.service
         echo "bluetooth.service is disabled"
