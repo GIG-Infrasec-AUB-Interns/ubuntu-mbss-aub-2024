@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 # 1.3.1.2 Ensure AppArmor is enabled in the bootloader configuration
 
 {
@@ -6,7 +6,7 @@
     apparmor_param_output=$(grep "^\s*linux" /boot/grub/grub.cfg | grep -v "apparmor=1")
     security_param_output=$(grep "^\s*linux" /boot/grub/grub.cfg | grep -v "security=apparmor")
 
-    if [[ -z $apparmor_param_output  && -z $security_param_output ]]; then
+    if [[ -z "$apparmor_param_output" ]] && [[ -z "$security_param_output" ]]; then
         echo "apparmor=1 and security=apparmor parameters set"
         echo "Audit Result: PASS"
     else    
@@ -22,15 +22,12 @@
         case "$ANSWER" in
             [Yy]*)
                 echo "Commencing remediation for Test 1.3.1.2..."
-
-                FIXES_SCRIPT="$(realpath fixes/chap1/chap1_3/chap1_3_1/1_3_1_2.sh)"
-                if [ -f "$FIXES_SCRIPT" ]; then
-                    chmod +x "$FIXES_SCRIPT"
-                    "$FIXES_SCRIPT"
-                else
-                    echo "Error: $FIXES_SCRIPT is not found."
-                fi
-                echo "For more information, please visit https://downloads.cisecurity.org/#/"
+                sudo sed -i 's/^GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="apparmor=1 security=apparmor"/' /etc/default/grub
+                sudo apt purge grub-legacy
+                sudo apt install grub-efi
+                sudo grub-install
+                sudo update-grub
+                echo "Remediation complete. Please reboot your system."
                 ;;
             *)
                 echo "Remediation not commenced"

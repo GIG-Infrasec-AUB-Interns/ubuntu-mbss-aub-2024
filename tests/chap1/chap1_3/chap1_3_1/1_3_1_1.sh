@@ -6,7 +6,8 @@
     apparmor_output=$(dpkg-query -s apparmor &>/dev/null && echo "apparmor is installed")
     apparmor_utils_output=$(dpkg-query -s apparmor-utils &>/dev/null && echo "apparmor-utils is installed")
 
-    if [$apparmor_output=="apparmor is installed"] && [$apparmor_utils_output=="apparmor-utils is installed"]; then
+    if ([[ "$apparmor_output"=="apparmor is installed" ]] && [[ "$apparmor_utils_output"=="apparmor-utils is installed" ]]);
+    then
         echo "AppArmor audit output:"
         echo "$apparmor_output"
         echo "AppArmor-utils audit output:"

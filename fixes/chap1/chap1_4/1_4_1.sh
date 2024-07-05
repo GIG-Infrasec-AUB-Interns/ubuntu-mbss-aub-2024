@@ -5,12 +5,10 @@
 {
     echo "[REMEDIATION] Ensuring bootloader password is set (1.4.1)..."
 
-    echo "Please set your password:\n"
-    grub-mkpasswd-pbkdf2 --iteration-count=600000 --salt=64
-
-    echo "Need to set username and encryted password (hash of password) in /etc/grub.d"
-    read -p "Please enter the username you just entered: " USERNAME
-    read -p "Please enter the hash of the password (not the actual password): " HASH_PASSWORD
+    read -p "Please enter your username: " USERNAME
+    echo "Please set your password:"
+    password_hash=$(grub-mkpasswd-pbkdf2 --iteration-count=600000 --salt=64 | awk '/PBKDF2/ {print $NF}')    
+    echo "Processing..."
 
     # Create a custom GRUB configuration file
     custom_grub_file="/etc/grub.d/01_custom"
@@ -35,7 +33,10 @@ EOF
     esac
 
     echo "Updating GRUB configuration..."
-    update-grub
+    sudo apt purge grub-legacy
+    sudo apt install grub-efi
+    sudo grub-install
+    sudo update-grub
 
     echo "Bootloader username and password set successfully."
     echo "For more information, please visit https://downloads.cisecurity.org/#/"
