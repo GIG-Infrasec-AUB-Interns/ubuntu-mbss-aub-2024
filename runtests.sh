@@ -39,5 +39,5 @@ runTests ./tests/chap1/chap1_2/chap1_2_2/*.sh
 
 # 3.1 Network device configuration
 echo "Running Network device configuration (Chapter 3.1)..."
-runTests ./tests/chap3/chap3_1*.sh
+runTests ./tests/chap3/chap3_1/*.sh
 
