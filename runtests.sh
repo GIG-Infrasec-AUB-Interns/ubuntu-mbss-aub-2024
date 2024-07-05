@@ -37,7 +37,7 @@ echo "Running Package Management tests (Chapter 1.2)..."
 runTests ./tests/chap1/chap1_2/chap1_2_1/*.sh
 runTests ./tests/chap1/chap1_2/chap1_2_2/*.sh
 
-# 3.1 IPv6 Identification
-echo "Running IPv6 Identification (Chapter 3.1.1)..."
-runTests ./tests/chap3/*.sh
+# 3.1 Network device configuration
+echo "Running Network device configuration (Chapter 3.1)..."
+runTests ./tests/chap3/chap3_1*.sh
 
