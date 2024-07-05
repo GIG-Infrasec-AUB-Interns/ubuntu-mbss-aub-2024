@@ -57,7 +57,7 @@ runTests ./tests/chap1/chap1_3/chap1_3_1/*.sh
 
 # 1.4 Testing configuration of bootloader
 echo "Testing config of bootloader (1.4)..."
-runTests "tests\chap1\chap1_4"
+runTests ./tests/chap1/chap1_4/*.sh
 
 # echo "Testing AppArmor configuration (1.3.1)..."
 # runTests ./tests/chap1/chap1_3/chap1_3_1/*.sh
