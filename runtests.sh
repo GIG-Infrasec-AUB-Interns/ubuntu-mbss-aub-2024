@@ -57,3 +57,7 @@ runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_7/*.sh
 # echo "Testing AppArmor configuration (1.3.1)..."
 # runTests ./tests/chap1/chap1_3/chap1_3_1/*.sh
 
+# 3.1 Network device configuration
+echo "Running Network device configuration (Chapter 3.1)..."
+runTests ./tests/chap3/chap3_1/*.sh
+
