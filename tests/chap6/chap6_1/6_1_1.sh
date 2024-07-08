@@ -47,6 +47,6 @@
         echo "Remediation not commenced"
         echo "For more information, please visit https://downloads.cisecurity.org/#/"
         ;;
-      esac
-    fi
+    esac
+  fi
 }
