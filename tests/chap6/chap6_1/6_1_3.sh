@@ -60,6 +60,7 @@
     echo -e "\n- Audit Result:\n ** PASS **\n - * Correctly configured * :$l_output" 
   else 
     echo -e "\n- Audit Result:\n ** FAIL **\n - * Reasons for audit failure * :$l_output2\n" 
-    [ -n "$l_output" ] && echo -e "\n - * Correctly configured * :\n$l_output\n" 
+    [ -n "$l_output" ] && echo -e "\n - * Correctly configured * :\n$l_output\n"
+    echo "For more information, please visit https://downloads.cisecurity.org/#/"
   fi 
 }
