@@ -3,17 +3,8 @@
 
 {
   echo "Ensuring AIDE is installed (6.1.1)..."
-  if dpkg-query -s aide; then
-    aide_output="aide is installed"
-  else
-    aide_output="aide is not installed"
-  fi
-
-  if dpkg-query -s aide-common; then
-    aide_common_output="aide-common is installed"
-  else
-    aide_common_output="aide-common is not installed"
-  fi
+  aide_output=$(dpkg-query -s aide &>/dev/null && echo "aide is installed")
+  aide_common_output=$(dpkg-query -s aide-common &>/dev/null && echo "aide-common is installed")
   
   if [$aide_output=="aide is installed"] && [$aide_common_output=="aide-common is installed"]; then
     echo "AIDE audit output:"
