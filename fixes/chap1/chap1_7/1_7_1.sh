@@ -9,5 +9,4 @@
     apt autoremove gdm3
 
     echo "Remediation finished successfully."
-    echo "For more information, please visit https://downloads.cisecurity.org/#/"
 }
