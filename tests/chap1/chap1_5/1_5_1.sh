@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 {
+    echo "Ensuring address space layout randomization is enabled (1.5.1)..."
     l_output="" l_output2=""
     a_parlist=(kernel.randomize_va_space=2)
     l_ufwscf="$([ -f /etc/default/ufw ] && awk -F= '/^\s*IPT_SYSCTL=/ {print $2}' /etc/default/ufw)"

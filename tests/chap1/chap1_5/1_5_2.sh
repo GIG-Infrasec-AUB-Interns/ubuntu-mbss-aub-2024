@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
 {
+    echo "Ensuring ptrace_scope is restricted (1.5.2)..."
+
     l_output="" l_output2=""
     a_parlist=("kernel.yama.ptrace_scope=1")
     l_ufwscf="$([ -f /etc/default/ufw ] && awk -F= '/^\s*IPT_SYSCTL=/ {print $2}' /etc/default/ufw)"
