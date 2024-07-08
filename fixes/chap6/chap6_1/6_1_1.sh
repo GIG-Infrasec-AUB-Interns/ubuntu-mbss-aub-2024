@@ -8,5 +8,4 @@
     apt install aide aide-common
 
     echo "AIDE and AIDE-common installed successfully."
-    echo "For more information, please visit https://downloads.cisecurity.org/#/"
 }

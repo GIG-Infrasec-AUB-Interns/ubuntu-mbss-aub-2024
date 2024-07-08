@@ -9,5 +9,4 @@
     systemctl start systemd-journald.service
 
     echo "journald service is now enabled and active."
-    echo "For more information, please visit https://downloads.cisecurity.org/#/"
 }
