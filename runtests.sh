@@ -1,5 +1,6 @@
 #! /usr/bin/bash
-
+source ./utils.sh
+source ./globals.sh
 # Benchmark tests on Ubuntu 22.04.4 based on
 # CIS Benchmarks https://downloads.cisecurity.org/#/
 
@@ -8,30 +9,6 @@
 # su root
 # chmod +x runtests.sh 
 # ./runtests.sh
-
-function runTests() {
-    local FILES=("$@") # store all file paths in array
-    for FILE in "${FILES[@]}"
-        do
-            chmod +x "$FILE"  # ensure the file is executable
-            if [ -x "$FILE" ]; then
-                ./"$FILE"  # execute file
-            else
-                echo "Error: $FILE is not executable or does not exist."
-            fi
-    done
-}
-
-check_gdm_installed() {
-    if command -v dpkg-query &>/dev/null; then
-        dpkg-query -l | grep -q gdm
-    elif command -v rpm &>/dev/null; then
-        rpm -qa | grep -q gdm
-    else
-        echo "Unsupported package manager."
-        return 1
-    fi
-}
 
 echo "Ubuntu 22.04.4 Benchmark Tests based on CIS Benchmarks"
 echo "Developed by AUB Interns: Gabriel Calubayan, Ieiaiel Sanceda, Gabriel Limbaga"
