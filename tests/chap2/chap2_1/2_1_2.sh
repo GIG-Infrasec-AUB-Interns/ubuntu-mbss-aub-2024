@@ -2,15 +2,15 @@
 source utils.sh
 
 {
-    echo "Ensuring autofs services are not in use (2.1.1)..."
+    echo "Ensuring avahi daemon services are not in use (2.1.2)..."
 
-    read -p "Does your machine have autofs dependent packages? (Y/N): " AUTOFS_ANSWER
+    read -p "Does your machine have avahi daemon dependent packages? (Y/N): " DEPENDENCY
 
-    case "$AUTO_ANSWER" in
+    case "$DEPENDENCY" in
         [Yy]*)
-            echo "Verifying autofs is not enabled..."
-            systemctl_1=$(systemctl is-enabled autofs.service 2>/dev/null | grep 'enabled')
-            systemctl_2=$(systemctl is-active autofs.service 2>/dev/null | grep '^active')
+            echo "Verifying avahi daemon is not enabled..."
+            systemctl_1=$(systemctl is-enabled avahi-daemon.socket avahi-daemon.service 2>/dev/null | grep 'enabled')
+            systemctl_2=$(systemctl is-active avahi-daemon.socket avahi-daemon.service 2>/dev/null | grep '^active')
             
             if [[ -z "$systemctl_1" ]] && [[ -z "$systemctl_2" ]]; then
                 echo "Output from systemctl_1:"
@@ -24,12 +24,12 @@ source utils.sh
                 echo "Output from systemctl_2:"
                 echo "$systemctl_2"
                 echo "Audit Result: FAIL"
-                runFix "2.1.1" fixes/chap2/chap2/2.1.1.sh
+                runFix "2.1.2" fixes/chap2/chap2/2.1.2.sh
             ;;
         *)
-            echo "Verifying autofs is not installed..."
+            echo "Verifying avahi daemon is not installed..."
 
-            dpkg_output=$( dpkg-query -s autofs &>/dev/null && echo "autofs is installed")
+            dpkg_output=$(dpkg-query -s avahi-daemon &>/dev/null && echo "avahi-daemon is installed")
 
             if [[ -z "$dpkg_output" ]]; then
                 echo "Output from dpkg:"
@@ -39,7 +39,7 @@ source utils.sh
                 echo "Output from dpkg:"
                 echo "$dpkg_output"
                 echo "Audit Result: FAIL"
-                runFix "2.1.1" fixes/chap2/chap2/2.1.1.sh
+                runFix "2.1.2" fixes/chap2/chap2/2.1.2.sh
             fi
             ;;
     esac

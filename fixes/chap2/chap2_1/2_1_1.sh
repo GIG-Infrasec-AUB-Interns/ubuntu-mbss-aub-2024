@@ -5,7 +5,7 @@
 {
     echo "[REMEDIATION] Ensuring autofs services are not in use (2.1.1)..."
 
-    read -p "Does your system depend on autofs OR does the workstation \n use portable hard drives? (Y/N)" ANSWER
+    read -p "Does your system depend on autofs OR does the workstation \n use portable hard drives or optical drives? (Y/N)" ANSWER
     case "$ANSWER" in
             [Yy]*)
                 echo "Aborting removal of autofs..."
