@@ -22,6 +22,17 @@ function runTests() {
     done
 }
 
+check_gdm_installed() {
+    if command -v dpkg-query &>/dev/null; then
+        dpkg-query -l | grep -q gdm
+    elif command -v rpm &>/dev/null; then
+        rpm -qa | grep -q gdm
+    else
+        echo "Unsupported package manager."
+        return 1
+    fi
+}
+
 echo "Ubuntu 22.04.4 Benchmark Tests based on CIS Benchmarks"
 echo "Developed by AUB Interns: Gabriel Calubayan, Ieiaiel Sanceda, Gabriel Limbaga"
 echo ""
@@ -59,6 +70,16 @@ runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_7/*.sh
 # echo "Testing config of bootloader (1.4)..."
 # runTests ./tests/chap1/chap1_4/*.sh
 
-# echo "Testing AppArmor configuration (1.3.1)..."
-# runTests ./tests/chap1/chap1_3/chap1_3_1/*.sh
+# 1.5 tests
+runTests ./tests/chap1/chap1_5/*.sh
+
+# 1.6 tests
+if check_gdm_installed; then
+    echo "GDM is installed."
+    echo "Running GDM tests..."
+    runTests ./tests/chap1/chap1_6/*.sh
+else
+    echo "GDM is not installed. Skipping GNOME Display Manager configuration."
+fi
+
 
