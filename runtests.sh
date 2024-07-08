@@ -73,11 +73,13 @@ runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_7/*.sh
 # 1.5 tests
 runTests ./tests/chap1/chap1_5/*.sh
 
-# 1.6 tests
+# 1.6 tests not done because it needs specific text from the organization approved by the legal department
+
+# 1.7 tests
 if check_gdm_installed; then
     echo "GDM is installed."
     echo "Running GDM tests..."
-    runTests ./tests/chap1/chap1_6/*.sh
+    runTests ./tests/chap1/chap1_7/*.sh
 else
     echo "GDM is not installed. Skipping GNOME Display Manager configuration."
 fi
