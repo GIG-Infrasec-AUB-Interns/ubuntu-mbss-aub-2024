@@ -61,4 +61,3 @@ else
     echo "GDM is not installed. Skipping GNOME Display Manager configuration."
 fi
 
-
