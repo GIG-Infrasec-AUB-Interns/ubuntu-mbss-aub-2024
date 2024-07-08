@@ -43,5 +43,26 @@
   else 
     echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2" 
     [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n" 
+
+    # Remediation
+    read -p "Run remediation script for Test 6.2.1.1.6? (Y/N): " ANSWER
+    case "$ANSWER" in
+      [Yy]*)
+        echo "Commencing remediation for Test 6.2.1.1.6..."
+
+        FIXES_SCRIPT="$(realpath fixes/chap6/chap6_2/chap6_2_1/chap6_2_1_1/6_2_1_1_6.sh)"
+        if [ -f "$FIXES_SCRIPT" ]; then
+          chmod +x "$FIXES_SCRIPT"
+          "$FIXES_SCRIPT"
+        else
+          echo "Error: $FIXES_SCRIPT is not found."
+        fi
+        echo "For more information, please visit https://downloads.cisecurity.org/#/"
+        ;;
+      *)
+        echo "Remediation not commenced"
+        echo "For more information, please visit https://downloads.cisecurity.org/#/"
+        ;;
+    esac
   fi 
 }
