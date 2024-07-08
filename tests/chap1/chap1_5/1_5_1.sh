@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+source utils.sh
+
 {
     echo "Ensuring address space layout randomization is enabled (1.5.1)..."
     l_output="" l_output2=""

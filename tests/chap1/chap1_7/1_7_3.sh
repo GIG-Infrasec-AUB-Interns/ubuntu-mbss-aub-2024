@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source utils.sh
 
 {
     echo "Ensuring GDM disable-user-list option is enabled (1.7.3)..."
@@ -42,27 +43,8 @@
         else
             echo -e "$l_pkgoutput\n- Audit Result:\n *** FAIL: ***\n$output2\n"
             [ -n "$output" ] && echo -e "$output\n"
-
-            read -p "Run remediation script for Test 1.7.3? (Y/N): " ANSWER
-            case $ANSWER in
-                [Yy])
-                    echo "Commencing remediation for Test 1.7.3..."
-
-                    FIXES_SCRIPT="$(realpath fixes/chap1/chap1_7/1_7_3.sh)"
-                    if [ -f "$FIXES_SCRIPT" ]; then
-                        chmod +x "$FIXES_SCRIPT"
-                        "$FIXES_SCRIPT"
-                    else
-                        echo "Error: $FIXES_SCRIPT is not found."
-                    fi
-                    echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                    ;;
-                *)
-                    echo "Remediation not commenced"
-                    echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                    ;;
-            esac
-
+            
+            runFix "1.7.3" fixes/chap1/chap1_7/1_7_3.sh
         fi
     else
         echo -e "\n\n - GNOME Desktop Manager isn't installed\n - Recommendation is Not Applicable\n- Audit result:\n *** PASS ***\n"

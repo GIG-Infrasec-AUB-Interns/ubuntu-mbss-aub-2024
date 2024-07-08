@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+source utils.sh
+
 {
     echo "Ensuring GDM autorun-never is enabled (1.7.8)..."
 
@@ -73,25 +75,7 @@
     else
         echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
-
-        read -p "Run remediation script for Test 1.7.8? (Y/N): " ANSWER
-        case $ANSWER in
-            [Yy])
-                echo "Commencing remediation for Test 1.7.8..."
-
-                FIXES_SCRIPT="$(realpath fixes/chap1/chap1_7/1_7_8.sh)"
-                if [ -f "$FIXES_SCRIPT" ]; then
-                    chmod +x "$FIXES_SCRIPT"
-                    "$FIXES_SCRIPT"
-                else
-                    echo "Error: $FIXES_SCRIPT is not found."
-                fi
-                echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                ;;
-            *)
-                echo "Remediation not commenced"
-                echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                ;;
-        esac
+        runFix "1.7.8" fixes/chap1/chap1_7/1_7_8.sh
+    
     fi
 }

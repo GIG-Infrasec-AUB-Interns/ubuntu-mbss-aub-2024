@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+source utils.sh
 
 {
     echo "Ensuring ptrace_scope is restricted (1.5.2)..."

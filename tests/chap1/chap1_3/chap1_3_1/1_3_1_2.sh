@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+source utils.sh
+
 # 1.3.1.2 Ensure AppArmor is enabled in the bootloader configuration
 
 {
@@ -17,22 +19,6 @@
         echo "$security_param_output"
         echo "Audit Result: FAIL"
 
-        # Remediation
-        read -p "Run remediation script for Test 1.3.1.2? (Y/N): " ANSWER
-        case "$ANSWER" in
-            [Yy]*)
-                echo "Commencing remediation for Test 1.3.1.2..."
-                sudo sed -i 's/^GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="apparmor=1 security=apparmor"/' /etc/default/grub
-                sudo apt purge grub-legacy
-                sudo apt install grub-efi
-                sudo grub-install
-                sudo update-grub
-                echo "Remediation complete. Please reboot your system."
-                ;;
-            *)
-                echo "Remediation not commenced"
-                echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                ;;
-        esac
+        runFix "1.3.1.2" fixes/chap1/chap1_3/chap1_3_1/1_3_1_2.sh
     fi
 }
