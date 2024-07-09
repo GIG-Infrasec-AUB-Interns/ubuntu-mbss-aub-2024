@@ -1,9 +1,9 @@
 #! /usr/bin/bash
 source utils.sh
-# 6.2.1.2.2 Ensure systemd-journal-upload is enabled and active
+# 6.2.1.2.3 Ensure systemd-journal-upload is enabled and active
 
 {
-  echo "Ensuring systemd-journal-uploadis enabled and active (6.2.1.2.2)..."
+  echo "Ensuring systemd-journal-uploadis enabled and active (6.2.1.2.3)..."
   is_enabled_output=$(systemctl is-enabled systemd-journal-upload.service)
   is_active_output=$(systemctl is-active systemd-journal-upload.service)
 
@@ -20,6 +20,6 @@ source utils.sh
     echo "$is_active_output"
     echo "Audit Result: FAIL"
 
-    runFix "6.2.1.2.2" fixes/chap6/chap6_2/chap6_2_1/chap6_2_1_2/6_2_1_2_2.sh # Remediation
+    runFix "6.2.1.2.3" fixes/chap6/chap6_2/chap6_2_1/chap6_2_1_2/6_2_1_2_3.sh # Remediation
   fi
 }
