@@ -3,7 +3,7 @@
 {
     echo "[REMEDIATION] Ensuring avahi daemon services are not in use (2.1.2)..."
 
-    read -p "Does your system have avahi daemon dependencies OR does the workstation (Y/N)" ANSWER
+    read -p "Does your system have avahi daemon dependencies? (Y/N)" ANSWER
     case "$ANSWER" in
         [Yy]*)
             echo "Aborting removal of avahi daemon..."

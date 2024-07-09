@@ -3,7 +3,7 @@
 {
     echo "[REMEDIATION] Ensuring dhcp server services are not in use (2.1.3)..."
 
-    read -p "Does your system have dhcp server services dependencies (Y/N)" ANSWER
+    read -p "Does your system have dhcp server services dependencies? (Y/N)" ANSWER
     case "$ANSWER" in
         [Yy]*)
             echo "Aborting removal of dhcp server services..."
