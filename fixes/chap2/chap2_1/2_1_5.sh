@@ -9,13 +9,13 @@
             echo "Aborting removal of dnsmasq services..."
             systemctl stop dnsmasq.service
             systemctl mask dnsmasq.service
-            echo "Stopped and masked dns server services instead."
+            echo "Stopped and masked dnsmasq services instead."
             ;;
         *)
             echo "Removing dnsmasq services..."
             systemctl stop dnsmasq.service
             apt purge dnsmasq
-            echo "Removed dns server services successfully."
+            echo "Removed dnsmasq services successfully."
             ;;
     esac
 }
