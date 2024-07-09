@@ -5,7 +5,7 @@
   echo "Ensuring systemd-journal-remote is installed (6.2.1.2.1)..."
   remote_output=$(dpkg-query -s systemd-journal-remote &>/dev/null && echo "systemd-journal-remote is installed")
   
-  if [$remote_output=="systemd-journal-remote is installed"]; then
+  if ([[ "$remote_output" == "systemd-journal-remote is installed" ]]); then
     echo "systemd-journal-remote audit output:"
     echo "$remote_output"
     echo "Audit Result: PASS"
