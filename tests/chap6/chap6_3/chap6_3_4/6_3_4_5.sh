@@ -17,5 +17,6 @@ source utils.sh
     echo -e "\n- Audit Result:\n ** PASS **\n - All audit configuration files are mode: \"$l_maxperm\" or more restrictive" 
   else 
     echo -e "\n- Audit Result:\n ** FAIL **\n$l_output2" 
+    runFix "6.3.4.5" fixes/chap6/chap6_3/chap6_3_4/6_3_4_5.sh # Remediation
   fi 
 }
