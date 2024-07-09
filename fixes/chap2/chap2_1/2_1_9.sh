@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 {
-    echo "[REMEDIATION] Ensuring network file system services are not in use (2.1.7)..."
+    echo "[REMEDIATION] Ensuring network file system services are not in use (2.1.9)..."
 
     read -p "Does your system have network file system services (nfs-kernel-server)? (Y/N)" ANSWER
     case "$ANSWER" in

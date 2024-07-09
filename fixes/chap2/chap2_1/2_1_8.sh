@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 {
-    echo "[REMEDIATION] Ensuring message access server services are not in use (2.1.7)..."
+    echo "[REMEDIATION] Ensuring message access server services are not in use (2.1.8)..."
 
     read -p "Does your system have message access server services (POP3 and IMAP)? (Y/N)" ANSWER
     case "$ANSWER" in
