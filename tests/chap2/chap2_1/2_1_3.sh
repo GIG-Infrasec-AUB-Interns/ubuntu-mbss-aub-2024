@@ -24,7 +24,7 @@ source utils.sh
                 echo "Output from systemctl_2:"
                 echo "$systemctl_2"
                 echo "Audit Result: FAIL"
-                runFix "2.1.3" fixes/chap2/chap2/2.1.3.sh
+                runFix "2.1.3" fixes/chap2/chap2/2_1_3.sh
             ;;
         *)
             echo "Verifying dhcp server services is not installed..."
@@ -39,7 +39,7 @@ source utils.sh
                 echo "Output from dpkg:"
                 echo "$dpkg_output"
                 echo "Audit Result: FAIL"
-                runFix "2.1.3" fixes/chap2/chap2/2.1.3.sh
+                runFix "2.1.3" fixes/chap2/chap2/2_1_3.sh
             fi
             ;;
     esac
