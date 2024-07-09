@@ -14,9 +14,6 @@
     echo "$audit_output"
     echo "Audit Result: FAIL"
 
-    echo "For remediation, please edit /etc/default/grub and add audit=1 to GRUB_CMDLINE_LINUX"
-    echo "EXAMPLE: GRUB_CMDLINE_LINUX=\"audit=1\""
-    echo "Then run update-grub"
-    echo "For more information, please visit https://downloads.cisecurity.org/#/"
+    runFix "6.3.1.3" fixes/chap6/chap6_3/chap6_3_1/6_3_1_3.sh # Remediation
   fi
 }
