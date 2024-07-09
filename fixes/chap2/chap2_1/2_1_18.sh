@@ -1,5 +1,7 @@
 #! /usr/bin/bash
 
+# Several httpd servers exist and can use other service names. apache2 and nginx are 
+# example services that provide an HTTP server. These and other services should also be audited 
 {
     echo "[REMEDIATION] Ensuring web server services are not in use (2.1.18)..."
 

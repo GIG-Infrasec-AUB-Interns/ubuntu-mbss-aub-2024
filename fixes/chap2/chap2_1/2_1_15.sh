@@ -1,5 +1,10 @@
 #! /usr/bin/bash
 
+# If SNMP is required:
+# The server should be configured for SNMP v3 only. User Authentication and 
+# Message Encryption should be configured.
+# If SNMP v2 is absolutely necessary, modify the community strings' values.
+
 {
     echo "[REMEDIATION] Ensuring snmp services are not in use (2.1.15)..."
 
