@@ -3,7 +3,7 @@
 {
     echo "[REMEDIATION] Ensuring nis server services are not in use (2.1.10)..."
 
-    read -p "Does your system have nis server services (ypserv)? (Y/N)" ANSWER
+    read -p "Does your system have nis server services dependencies (ypserv)? (Y/N)" ANSWER
     case "$ANSWER" in
         [Yy]*)
             echo "Aborting removal of nis server services..."
