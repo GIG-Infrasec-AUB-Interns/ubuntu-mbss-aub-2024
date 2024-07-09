@@ -7,7 +7,7 @@ source utils.sh
   is_enabled_output=$(systemctl is-enabled systemd-journald.service)
   is_active_output=$(systemctl is-active systemd-journald.service)
 
-  if [[ "$is_enabled_output" == "static" && "$is_active_output" == "active" ]]; then
+  if ([ "$is_enabled_output" == "static" ] && [ "$is_active_output" == "active" ]); then
     echo "journald is-enabled output:"
     echo "$is_enabled_output"
     echo "journald is-active output:"
