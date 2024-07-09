@@ -3,7 +3,7 @@
 # 1.3.1.1 [REMEDIATION] Ensure AppArmor is installed
 
 {
-    echo "[REMEDIATION] Ensuring cramfs kernel module is not available (1.1.1.1)..."
+    echo "[REMEDIATION] Ensuring AppArmor is installed (1.3.1.1)..."
 
     apt install apparmor apparmor-utils
 

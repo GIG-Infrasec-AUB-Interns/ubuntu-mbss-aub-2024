@@ -1,4 +1,5 @@
 #! /usr/bin/bash
+source utils.sh
 
 # 1.1.1.3 Ensure hfs kernel module is not available
 
@@ -65,26 +66,7 @@
         echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
 
-        # Remediation
-        read -p "Run remediation script for Test 1.1.1.3? (Y/N): " ANSWER
-        case "$ANSWER" in
-            [Yy]*)
-                echo "Commencing remediation for Test 1.1.1.3..."
-                
-                FIXES_SCRIPT="$(realpath fixes/chap1/chap1_1/chap1_1_1/1_1_1_3.sh)"
-                if [ -f "$FIXES_SCRIPT" ]; then
-                    chmod +x "$FIXES_SCRIPT"
-                    "$FIXES_SCRIPT"
-                else
-                    echo "Error: $FIXES_SCRIPT is not found."
-                fi
-                echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                ;;
-            *)
-                echo "Remediation not commenced"
-                echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                ;;
-        esac
+        runFix "1.1.1.3" fixes/chap1/chap1_1/chap1_1_1/1_1_1_3.sh
     
     fi
 }
