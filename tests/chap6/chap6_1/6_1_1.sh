@@ -1,4 +1,5 @@
 #! /usr/bin/bash
+source utils.sh
 # 6.1.1 Ensure AIDE is installed
 
 {
@@ -20,25 +21,6 @@
     echo "$aide_common_output"
     echo "Audit Result: FAIL"
 
-    # Remediation
-    read -p "Run remediation script for Test 6.1.1? (Y/N): " ANSWER
-    case "$ANSWER" in
-      [Yy]*)
-        echo "Commencing remediation for Test 6.1.1..."
-
-        FIXES_SCRIPT="$(realpath fixes/chap6/chap6_1/6_1_1.sh)"
-        if [ -f "$FIXES_SCRIPT" ]; then
-          chmod +x "$FIXES_SCRIPT"
-          "$FIXES_SCRIPT"
-        else
-          echo "Error: $FIXES_SCRIPT is not found."
-        fi
-        echo "For more information, please visit https://downloads.cisecurity.org/#/"
-        ;;
-      *)
-        echo "Remediation not commenced"
-        echo "For more information, please visit https://downloads.cisecurity.org/#/"
-        ;;
-    esac
+    runFix "6.1.1" fixes/chap6/chap6_1/6_1_1.sh # Remediation
   fi
 }
