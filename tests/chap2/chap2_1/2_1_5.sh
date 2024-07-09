@@ -25,6 +25,7 @@ source utils.sh
                 echo "$systemctl_2"
                 echo "Audit Result: FAIL"
                 runFix "2.1.5" fixes/chap2/chap2/2_1_5.sh
+            fi
             ;;
         *)
             echo "Verifying dnsmasq services is not installed..."

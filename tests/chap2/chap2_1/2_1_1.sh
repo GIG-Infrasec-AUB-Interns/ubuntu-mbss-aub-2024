@@ -6,7 +6,7 @@ source utils.sh
 
     read -p "Does your machine have autofs dependent packages? (Y/N): " AUTOFS_ANSWER
 
-    case "$AUTO_ANSWER" in
+    case "$AUTOFS_ANSWER" in
         [Yy]*)
             echo "Verifying autofs is not enabled..."
             systemctl_1=$(systemctl is-enabled autofs.service 2>/dev/null | grep 'enabled')
@@ -25,6 +25,7 @@ source utils.sh
                 echo "$systemctl_2"
                 echo "Audit Result: FAIL"
                 runFix "2.1.1" fixes/chap2/chap2/2_1_1.sh
+            fi
             ;;
         *)
             echo "Verifying autofs is not installed..."

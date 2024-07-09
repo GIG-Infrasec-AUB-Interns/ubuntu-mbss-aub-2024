@@ -25,6 +25,7 @@ source utils.sh
                 echo "$systemctl_2"
                 echo "Audit Result: FAIL"
                 runFix "2.1.10" fixes/chap2/chap2/2_1_10.sh
+            fi
             ;;
         *)
             echo "Verifying nis server services is not installed..."
