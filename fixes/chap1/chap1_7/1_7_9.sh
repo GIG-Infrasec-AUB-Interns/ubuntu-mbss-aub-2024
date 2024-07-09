@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 {
     echo "[REMEDIATION] Ensuring GDM autorun-never is not overridden (1.7.9)..."
