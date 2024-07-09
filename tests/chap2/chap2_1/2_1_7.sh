@@ -2,15 +2,15 @@
 source utils.sh
 
 {
-    echo "Ensuring ftp server services are not in use (2.1.6)..."
+    echo "Ensuring ldap server services are not in use (2.1.7)..."
 
-    read -p "Does your machine have ftp server services dependent packages? (Y/N): " DEPENDENCY
+    read -p "Does your machine have ldap server services dependent packages? (Y/N): " DEPENDENCY
 
     case "$DEPENDENCY" in
         [Yy]*)
-            echo "Verifying ftp server services is not enabled..."
-            systemctl_1=$(systemctl is-enabled vsftpd.service 2>/dev/null | grep 'enabled')
-            systemctl_2=$(systemctl is-active vsftpd.service 2>/dev/null | grep '^active')
+            echo "Verifying ldap server services is not enabled..."
+            systemctl_1=$(systemctl is-enabled slapd.service 2>/dev/null | grep 'enabled')
+            systemctl_2=$(systemctl is-active slapd.service 2>/dev/null | grep '^active')
             
             if [[ -z "$systemctl_1" ]] && [[ -z "$systemctl_2" ]]; then
                 echo "Output from systemctl_1:"
@@ -24,12 +24,12 @@ source utils.sh
                 echo "Output from systemctl_2:"
                 echo "$systemctl_2"
                 echo "Audit Result: FAIL"
-                runFix "2.1.6" fixes/chap2/chap2/2_1_6.sh
+                runFix "2.1.7" fixes/chap2/chap2/2_1_7.sh
             ;;
         *)
-            echo "Verifying ftp server services is not installed..."
+            echo "Verifying ldap server services is not installed..."
 
-            dpkg_output=$(dpkg-query -s vsftpd &>/dev/null && echo "vsftpd is installed")
+            dpkg_output=$(dpkg-query -s slapd &>/dev/null && echo "slapd is installed")
 
             if [[ -z "$dpkg_output" ]]; then
                 echo "Output from dpkg:"
@@ -39,7 +39,7 @@ source utils.sh
                 echo "Output from dpkg:"
                 echo "$dpkg_output"
                 echo "Audit Result: FAIL"
-                runFix "2.1.6" fixes/chap2/chap2/2_1_6.sh
+                runFix "2.1.7" fixes/chap2/chap2/2_1_7.sh
             fi
             ;;
     esac

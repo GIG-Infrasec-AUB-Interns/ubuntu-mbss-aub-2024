@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 {
-    echo "[REMEDIATION] Ensuring ftp server services are not in use (2.1.5)..."
+    echo "[REMEDIATION] Ensuring ftp server services are not in use (2.1.6)..."
 
     read -p "Does your system have ftp server services OR vsftpd package dependencies? (Y/N)" ANSWER
     case "$ANSWER" in
