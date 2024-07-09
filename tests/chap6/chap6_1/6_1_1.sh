@@ -6,7 +6,8 @@
   aide_output=$(dpkg-query -s aide &>/dev/null && echo "aide is installed")
   aide_common_output=$(dpkg-query -s aide-common &>/dev/null && echo "aide-common is installed")
   
-  if [$aide_output=="aide is installed"] && [$aide_common_output=="aide-common is installed"]; then
+  if ([[ "$aide_output"=="aide is installed" ]] && [[ "$aide_common_output"=="aide-common is installed" ]]); 
+  then
     echo "AIDE audit output:"
     echo "$aide_output"
     echo "AIDE-common audit output:"
