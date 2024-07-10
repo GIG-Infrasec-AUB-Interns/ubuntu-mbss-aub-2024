@@ -7,9 +7,9 @@
   
   chmod u-x,g-wx,o-rwx /etc/shadow
 
-  # Set ownership of etc/shadow to root OR shadow
+  # Set ownership of /etc/shadow to root OR shadow
   chown root:shadow /etc/shadow
-  # chown root:root /etc/root
+  # chown root:root /etc/shadow
 
   echo "Permissions on /etc/shadow are now configured."
 }
