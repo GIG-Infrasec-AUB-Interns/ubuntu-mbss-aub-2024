@@ -82,10 +82,18 @@ elif [[ "$TIME_SYNCH" == "chrony" ]]; then
     runTests ./tests/chap2/chap2_2/chap2_3_3/*.sh
 else
     echo "No time synchronization in use."
+fi
 
 echo "Running job scheduler tests (2.4)..."
-echo "Running cron configuration tests (2.4.1)..."
-runTests ./tests/chap2/chap2_4/chap2_4_1/*.sh
+
+cron_installed=$(dpkg -l | grep cron)
+
+if [[ -z "$cron_installed" ]]; then
+    echo "Running cron configuration tests (2.4.1)..."
+    runTests ./tests/chap2/chap2_4/chap2_4_1/*.sh
+else
+    echo "cron not installed. Skipping 2.4.1 tests..."
+fi
 
 echo "Running at configuration tests (2.4.2)..."
 runTests ./tests/chap2/chap2_4/chap2_4_2/*.sh
