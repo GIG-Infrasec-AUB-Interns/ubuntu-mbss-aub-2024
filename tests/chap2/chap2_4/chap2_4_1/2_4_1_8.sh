@@ -19,7 +19,7 @@ source utils.sh
             echo "Audit Result: PASS"
         else
             echo "Audit Result: FAIL"
-            runFix "2.4.1.8a" fixes/chap2/chap2_4/chap2_4_1/2_4_1_8a.sh
+            runFix "2.4.1.8" fixes/chap2/chap2_4/chap2_4_1/2_4_1_8a.sh
         fi
 
     # Check if /etc/cron.deny exists
@@ -37,10 +37,11 @@ source utils.sh
             echo "Audit Result: PASS"
         else
             echo "Audit Result: FAIL"
-            runFix "2.4.1.8b" fixes/chap2/chap2_4/chap2_4_1/2_4_1_8b.sh
+            runFix "2.4.1.8" fixes/chap2/chap2_4/chap2_4_1/2_4_1_8b.sh
         fi
 
     # If neither /etc/cron.allow nor /etc/cron.deny exist
     else
         echo "cron.allow and cron.deny do not exist! cron will deny access to all users until permissions are fixed"
+        runFix "2.4.1.8a" fixes/chap2/chap2_4/chap2_4_1/2_4_1_8a.sh
 }

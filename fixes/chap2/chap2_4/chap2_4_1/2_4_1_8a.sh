@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 source utils.sh
+
 # for when cron.allow exists
 {
     echo "[REMEDIATION] Ensuring crontab is restricted to authorized users (2.4.1.8)..."

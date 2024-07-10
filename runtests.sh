@@ -95,6 +95,14 @@ else
     echo "cron not installed. Skipping 2.4.1 tests..."
 fi
 
-echo "Running at configuration tests (2.4.2)..."
-runTests ./tests/chap2/chap2_4/chap2_4_2/*.sh
+
+at_installed=$(dpkg -l | grep at)
+
+if [[ -z "$at_installed" ]]; then
+    echo "Running at configuration tests (2.4.2)..."
+    runTests ./tests/chap2/chap2_4/chap2_4_2/*.sh
+else
+    echo "at not installed. Skipping 2.4.1 tests..."
+fi
+
 
