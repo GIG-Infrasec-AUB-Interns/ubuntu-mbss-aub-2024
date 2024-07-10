@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source utils.sh
 {
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
     l_mname="rds" # set module name
@@ -60,24 +61,6 @@
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
 
         #Remediation 
-        read -p "Run remediation script for Test 3.2.3? (Y/N): " ANSWER
-        case "$ANSWER" in
-            [Yy]*)
-                echo "Commencing remediation for Test 3.2.3..."
-                # Resolve absolute path to fixes/chap3/chap3_2/chap3_2_3.sh
-                FIXES_SCRIPT="$(realpath fixes/chap3/chap3_2/chap3_2_3.sh)"
-                if [ -f "$FIXES_SCRIPT" ]; then
-                    chmod +x "$FIXES_SCRIPT"
-                    "$FIXES_SCRIPT"
-                else
-                    echo "Error: $FIXES_SCRIPT is not found."
-                fi
-                echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                ;;
-            *)
-                echo "Remediation not commenced"
-                echo "For more information, please visit https://downloads.cisecurity.org/#/"
-                ;;
-        esac
+        runFix "3.2.3" fixes/chap3/chap3_2/chap3_2_3.sh
     fi
 }
