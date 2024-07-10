@@ -24,7 +24,7 @@ source utils.sh
                 echo "Output from systemctl_2:"
                 echo "$systemctl_2"
                 echo "Audit Result: FAIL"
-                runFix "2.1.18" fixes/chap2/chap2/2_1_18.sh
+                runFix "2.1.18" fixes/chap2/chap2_1/2_1_18.sh
             fi
             ;;
         *)
@@ -45,7 +45,7 @@ source utils.sh
                 echo "Output from nginx dpkg:"
                 echo "$dpkg_output2"
                 echo "Audit Result: FAIL"
-                runFix "2.1.18" fixes/chap2/chap2/2_1_18.sh
+                runFix "2.1.18" fixes/chap2/chap2_1/2_1_18.sh
             fi
             ;;
     esac

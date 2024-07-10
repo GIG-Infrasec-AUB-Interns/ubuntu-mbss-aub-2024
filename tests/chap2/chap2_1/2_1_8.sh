@@ -24,7 +24,7 @@ source utils.sh
                 echo "Output from systemctl_2:"
                 echo "$systemctl_2"
                 echo "Audit Result: FAIL"
-                runFix "2.1.8" fixes/chap2/chap2/2_1_8.sh
+                runFix "2.1.8" fixes/chap2/chap2_1/2_1_8.sh
             fi
             ;;
         *)
@@ -45,7 +45,7 @@ source utils.sh
                 echo "Output from dovecot-pop3d dpkg:"
                 echo "$dpkg_output2"
                 echo "Audit Result: FAIL"
-                runFix "2.1.8" fixes/chap2/chap2/2_1_8.sh
+                runFix "2.1.8" fixes/chap2/chap2_1/2_1_8.sh
             fi
             ;;
     esac

@@ -23,7 +23,7 @@ source utils.sh
                 echo "Output from dpkg:"
                 echo "$dpkg_output1"
                 echo "Audit Result: FAIL"
-                runFix "2.1.20" fixes/chap2/chap2/2_1_20.sh
+                runFix "2.1.20" fixes/chap2/chap2_1/2_1_20.sh
             fi
             ;;
     esac
