@@ -61,3 +61,24 @@ else
     echo "GDM is not installed. Skipping GNOME Display Manager configuration."
 fi
 
+# Chapter 2 Services
+
+# 2.1 Server Services
+echo "Running server services configuration tests (Chapter 2.1)..."
+runTests ./tests/chap2/chap2_1/*.sh
+
+echo "Running client services configuration tests (Chapter 2.2)..."
+runTests ./tests/chap2/chap2_2/*.sh
+
+echo "Running time synchronization configuration tests (Chapter 2.3)..."
+echo "Ensuring time synchronization is in use (Chapter 2.3.1)..."
+runTests ./tests/chap2/chap2_2/chap2_3_1/*.sh
+
+if [[ "$TIME_SYNCH" == "systemd-timesyncd" ]]; then
+    echo "Checking systemd-timesyncd configuration (Chapter 2.3.2)..."
+    runTests ./tests/chap2/chap2_2/chap2_3_2/*.sh
+elif [[ "$TIME_SYNCH" == "chrony" ]]; then
+    echo "Checking chrony configuration (Chapter 2.3.3)..."
+    runTests ./tests/chap2/chap2_2/chap2_3_3/*.sh
+else
+    echo "No time synchronization in use."
