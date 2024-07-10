@@ -6,8 +6,7 @@ source utils.sh
   echo "Ensuring world writable files and directories are secured (7.1.11)..."
   l_output="" l_output2="" 
   l_smask='01000' 
-  a_file=(); 
-  a_dir=() # Initialize arrays 
+  a_file=(); a_dir=() # Initialize arrays 
   a_path=(! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/*" -a ! -path "/snap/*") 
   while IFS= read -r l_mount; do 
     while IFS= read -r -d $'\0' l_file; do 
