@@ -46,6 +46,6 @@ source utils.sh
     else
         echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2"
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
-        runFix "2.3.2.1" ./fixes/chap2/chap2_3/chap2_3_2/2_3_2_1.sh
+        runFix "2.3.2.1" fixes/chap2/chap2_3/chap2_3_2/2_3_2_1.sh
     fi
 }
