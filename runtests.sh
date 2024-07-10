@@ -82,3 +82,11 @@ elif [[ "$TIME_SYNCH" == "chrony" ]]; then
     runTests ./tests/chap2/chap2_2/chap2_3_3/*.sh
 else
     echo "No time synchronization in use."
+
+echo "Running job scheduler tests (2.4)..."
+echo "Running cron configuration tests (2.4.1)..."
+runTests ./tests/chap2/chap2_4/chap2_4_1/*.sh
+
+echo "Running at configuration tests (2.4.2)..."
+runTests ./tests/chap2/chap2_4/chap2_4_2/*.sh
+
