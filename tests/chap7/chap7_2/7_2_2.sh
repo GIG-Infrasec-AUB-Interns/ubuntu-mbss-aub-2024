@@ -18,5 +18,6 @@
     echo "For remediation, run the following command for each account without a password:"
     echo "passwd -l <username>"
     echo "This will lock the account until it can be determined why it does not have a password."
+    echo "For more information, please visit https://downloads.cisecurity.org/#/"
   fi
 }

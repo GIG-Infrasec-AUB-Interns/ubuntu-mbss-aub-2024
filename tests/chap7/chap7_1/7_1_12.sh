@@ -34,5 +34,6 @@
     echo -e "\n- Audit Result:\n ** FAIL **\n - * Reasons for audit failure * :\n$l_output2" 
     [ -n "$l_output" ] && echo -e "\n- * Correctly configured * :\n$l_output\n" 
     echo "For remediation, remove or set ownership and group ownership of these files and/or directories to an active user on the system as appropriate"
+    echo "For more information, please visit https://downloads.cisecurity.org/#/"
   fi 
 }
