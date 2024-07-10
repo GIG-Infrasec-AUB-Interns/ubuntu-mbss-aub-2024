@@ -1,9 +1,10 @@
 #! /usr/bin/bash
 
-# 1.1.1.1 [REMEDIATION] Ensure cramfs kernel module is not available
+# 1.1.1.6 [REMEDIATION] Ensure squashfs kernel module is not available
+
 {
-    echo "[REMEDIATION] Ensuring cramfs kernel module is not available (1.1.1.1)..."
-    l_mname="cramfs" # set module name
+    echo "[REMEDIATION] Ensuring squashfs kernel module is not available (1.1.1.6)..."
+    l_mname="squashfs" # set module name
     l_mtype="fs" # set module type
     l_mpath="/lib/modules/**/kernel/$l_mtype"
     l_mpname="$(tr '-' '_' <<< "$l_mname")"
@@ -19,7 +20,7 @@
             echo -e "install $l_mname /bin/false" >> /etc/modprobe.d/"$l_mpname".conf
         fi
     }
-    
+
     module_loaded_fix() {
         # If the module is currently loaded, unload the module
         if lsmod | grep "$l_mname" > /dev/null 2>&1; then

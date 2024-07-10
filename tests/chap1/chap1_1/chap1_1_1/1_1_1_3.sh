@@ -1,11 +1,12 @@
 #! /usr/bin/bash
 source utils.sh
-# 1.1.1.1 Ensure cramfs kernel module is not available
+
+# 1.1.1.3 Ensure hfs kernel module is not available
 
 {
-    echo "Ensuring cramfs kernel module is not available (1.1.1.1)..."
+    echo "Ensuring hfs kernel module is not available (1.1.1.3)..."
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
-    l_mname="cramfs" # set module name
+    l_mname="hfs" # set module name
     l_mtype="fs" # set module type
     l_searchloc="/lib/modprobe.d/*.conf /usr/local/lib/modprobe.d/*.conf /run/modprobe.d/*.conf/etc/modprobe.d/*.conf"
     l_mpath="/lib/modules/**/kernel/$l_mtype"
@@ -22,11 +23,10 @@ source utils.sh
         else
             l_output2="$l_output2\n - module: \"$l_mname\" is loadable: \"$l_loadable\""
         fi
-
     }
 
     module_loaded_chk() {
-    # Check if the module is currently loaded
+        # Check if the module is currently loaded
         if ! lsmod | grep "$l_mname" > /dev/null 2>&1; then
             l_output="$l_output\n - module: \"$l_mname\" is not loaded"
         else
@@ -37,9 +37,8 @@ source utils.sh
     module_deny_chk() {
         # Check if the module is deny listed
         l_dl="y"
-
         if modprobe --showconfig | grep -Pq -- '^\h*blacklist\h+'"$l_mpname"'\b'; then
-            l_output="$l_output\n - module: \"$l_mname\" is deny listed in: \"$(grep -Pls --"^\h*blacklist\h+$l_mname\b" $l_searchloc)\""
+            l_output="$l_output\n - module: \"$l_mname\" is deny listed in: \"$(grep -Pls -- "^\h*blacklist\h+$l_mname\b" $l_searchloc)\""
         else
             l_output2="$l_output2\n - module: \"$l_mname\" is not deny listed"
         fi
@@ -67,6 +66,7 @@ source utils.sh
         echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
 
-        runFix "1.1.1.1" fixes/chap1/chap1_1/chap1_1_1/1_1_1_1.sh
+        runFix "1.1.1.3" fixes/chap1/chap1_1/chap1_1_1/1_1_1_3.sh
+    
     fi
 }
