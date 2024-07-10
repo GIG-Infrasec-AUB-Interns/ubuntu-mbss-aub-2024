@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 {
     echo "[REMEDIATION] Ensuring GDM automatic mounting of removable media is disabled..."
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 {
     echo "[REMEDIATION] Ensuring GDM disable-user-list option is enabled (1.7.3)..."

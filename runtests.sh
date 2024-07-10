@@ -61,3 +61,48 @@ else
     echo "GDM is not installed. Skipping GNOME Display Manager configuration."
 fi
 
+# Chapter 2 Services
+
+# 2.1 Server Services
+echo "Running server services configuration tests (Chapter 2.1)..."
+runTests ./tests/chap2/chap2_1/*.sh
+
+echo "Running client services configuration tests (Chapter 2.2)..."
+runTests ./tests/chap2/chap2_2/*.sh
+
+echo "Running time synchronization configuration tests (Chapter 2.3)..."
+echo "Ensuring time synchronization is in use (Chapter 2.3.1)..."
+runTests ./tests/chap2/chap2_2/chap2_3_1/*.sh
+
+if [[ "$TIME_SYNCH" == "systemd-timesyncd" ]]; then
+    echo "Checking systemd-timesyncd configuration (Chapter 2.3.2)..."
+    runTests ./tests/chap2/chap2_2/chap2_3_2/*.sh
+elif [[ "$TIME_SYNCH" == "chrony" ]]; then
+    echo "Checking chrony configuration (Chapter 2.3.3)..."
+    runTests ./tests/chap2/chap2_2/chap2_3_3/*.sh
+else
+    echo "No time synchronization in use."
+fi
+
+echo "Running job scheduler tests (2.4)..."
+
+cron_installed=$(dpkg -l | grep cron)
+
+if [[ -z "$cron_installed" ]]; then
+    echo "Running cron configuration tests (2.4.1)..."
+    runTests ./tests/chap2/chap2_4/chap2_4_1/*.sh
+else
+    echo "cron not installed. Skipping 2.4.1 tests..."
+fi
+
+
+at_installed=$(dpkg -l | grep at)
+
+if [[ -z "$at_installed" ]]; then
+    echo "Running at configuration tests (2.4.2)..."
+    runTests ./tests/chap2/chap2_4/chap2_4_2/*.sh
+else
+    echo "at not installed. Skipping 2.4.1 tests..."
+fi
+
+

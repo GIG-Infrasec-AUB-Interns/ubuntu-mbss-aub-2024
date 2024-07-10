@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 {
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
     l_mname="rds" # set module name

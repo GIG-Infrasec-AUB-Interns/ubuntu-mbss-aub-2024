@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 {
     echo "[REMEDIATION] Ensuring GDM login banner is configured (1.7.2)..."
