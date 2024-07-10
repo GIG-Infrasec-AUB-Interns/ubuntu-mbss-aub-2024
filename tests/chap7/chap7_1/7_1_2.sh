@@ -19,6 +19,6 @@ source utils.sh
     echo "$audit_output"
     echo "Audit Result: FAIL"
   
-    runFix "7.1.1" fixes/chap7/chap7_1/7_1_1.sh # Remediation
+    runFix "7.1.2" fixes/chap7/chap7_1/7_1_2.sh # Remediation
   fi
 }
