@@ -31,13 +31,15 @@ source utils.sh
   while read -r l_user l_home; do 
     l_fe="" l_nout2="" l_nout3="" l_dfout2="" l_hdout2="" l_bhout2="" 
     if [ -d "$l_home" ]; then 
-      l_group="$(id -gn "$l_user" | xargs)" l_group="${l_group// /|}" 
+      l_group="$(id -gn "$l_user" | xargs)" 
+      l_group="${l_group// /|}" 
       while IFS= read -r -d $'\0' l_hdfile; do 
         while read -r l_mode l_owner l_gowner; do 
           case "$(basename "$l_hdfile")" in 
             .forward | .rhost ) 
               l_fe="Y" && l_bf="Y" 
-              l_dfout2="$l_dfout2\n - File: \"$l_hdfile\" exists" ;; .netrc ) 
+              l_dfout2="$l_dfout2\n - File: \"$l_hdfile\" exists" ;; 
+            .netrc ) 
               l_mask='0177' 
               file_access_chk 
               if [ -n "$l_facout2" ]; then 
