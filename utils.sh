@@ -48,3 +48,19 @@ function runFix() {
                 ;;
         esac
 }
+
+function check() { # For 6.3.3 tests, check if output matches expected output
+    output=$1
+    shift
+    expected=("$@")
+    matches="true"
+
+    for line in "${expected[@]}"; do
+      if ! echo "$output" | grep -qF "$line"; then
+        matches="false"
+        break
+      fi
+    done
+
+    echo "$matches"
+}
