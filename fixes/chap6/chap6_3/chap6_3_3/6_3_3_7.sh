@@ -14,5 +14,10 @@
     )
     [ -n "${UID_MIN}" ] && printf "${rules[@]}" >> /etc/audit/rules.d/50-access.rules || printf "ERROR: Variable 'UID_MIN' is unset.\n"
 
+    augenrules --load
+    if [[ $(auditctl -s | grep "enabled") =~ "2" ]]; then 
+      printf "Reboot required to load rules\n"; 
+    fi
+
     echo "Unsuccessful file access attempts are now collected."
 }
