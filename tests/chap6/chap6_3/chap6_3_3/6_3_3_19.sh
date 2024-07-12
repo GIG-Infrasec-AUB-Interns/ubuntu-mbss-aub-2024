@@ -27,8 +27,10 @@ source utils.sh
       ondisk_output_2=$([ -n "${UID_MIN}" ] && awk "/^ *-a *always,exit/ &&(/ -F *auid!=unset/||/ -F *auid!=-1/||/ -F *auid!=4294967295/) &&/ -F *auid>=${UID_MIN}/ &&/ -F *perm=x/ &&/ -F *path=\/usr\/bin\/kmod/ &&(/ key= *[!-~]* *$/||/ -k *[!-~]* *$/)" /etc/audit/rules.d/*.rules || printf "ERROR: Variable 'UID_MIN' is unset.\n")
       matches_1=$(check "$ondisk_output_1" "${ondisk_expected_1[@]}")
       matches_2=$(check "$ondisk_output_2" "${ondisk_expected_2[@]}")
+      S_LINKS=$(ls -l /usr/sbin/lsmod /usr/sbin/rmmod /usr/sbin/insmod /usr/sbin/modinfo /usr/sbin/modprobe /usr/sbin/depmod | grep -vE " -> (\.\./)?bin/kmod" || true)
+      s_links_output=$(if [[ "${S_LINKS}" != "" ]]; then echo "Issue with symlinks: ${S_LINKS}"; else echo "OK"; fi)
 
-      if ([ "$matches_1" == "true" ] && [ "$matches_2" == "true" ]); then
+      if ([ "$matches_1" == "true" ] && [ "$matches_2" == "true" ] && [ "$s_links_output" == "OK" ]); then
         echo "On disk rules:"
         echo "$ondisk_output_1"
         echo "$ondisk_output_2"
@@ -48,8 +50,10 @@ source utils.sh
       running_output_2=$([ -n "${UID_MIN}" ] && auditctl -l | awk "/^ *-a *always,exit/ &&(/ -F *auid!=unset/||/ -F *auid!=-1/||/ -F *auid!=4294967295/) &&/ -F *auid>=${UID_MIN}/ &&/ -F *perm=x/ &&/ -F *path=\/usr\/bin\/kmod/ &&(/ key= *[!-~]* *$/||/ -k *[!-~]* *$/)" || printf "ERROR: Variable 'UID_MIN' is unset.\n")
       matches_1=$(check "$running_output_1" "${running_expected_1[@]}")
       matches_2=$(check "$running_output_2" "${running_expected_2[@]}")
+      S_LINKS=$(ls -l /usr/sbin/lsmod /usr/sbin/rmmod /usr/sbin/insmod /usr/sbin/modinfo /usr/sbin/modprobe /usr/sbin/depmod | grep -vE " -> (\.\./)?bin/kmod" || true)
+      s_links_output=$(if [[ "${S_LINKS}" != "" ]]; then echo "Issue with symlinks: ${S_LINKS}"; else echo "OK"; fi)
 
-      if ([ "$matches_1" == "true" ] && [ "$matches_2" == "true" ]); then
+      if ([ "$matches_1" == "true" ] && [ "$matches_2" == "true" ] && [ "$s_links_output" == "OK" ]); then
         echo "Loaded rules:"
         echo "$running_output_1"
         echo "$running_output_2"
