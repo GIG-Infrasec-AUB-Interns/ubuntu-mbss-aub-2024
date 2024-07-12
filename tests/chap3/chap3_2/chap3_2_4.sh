@@ -62,6 +62,6 @@ source utils.sh
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
         
         #Remediation 
-        runFix "3.2.2" fixes/chap3/chap3_2/chap3_2_2.sh  
+        runFix "3.2.4" fixes/chap3/chap3_2/chap3_2_4.sh  
     fi
 }

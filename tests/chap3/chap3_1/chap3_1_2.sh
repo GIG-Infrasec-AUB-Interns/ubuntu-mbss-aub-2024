@@ -40,5 +40,8 @@
     else
         echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
             [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
+        
+        #Remediation 
+        runFix "3.1.2" fixes/chap3/chap3_1/chap3_1_2.sh   
     fi
 }
