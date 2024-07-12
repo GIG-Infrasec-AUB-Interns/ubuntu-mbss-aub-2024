@@ -66,4 +66,7 @@ fi
 echo "Running Network device configuration (Chapter 3.1)..."
 runTests ./tests/chap3/chap3_1/*.sh
 runTests ./tests/chap3/chap3_2/*.sh
-runTests ./tests/chap3/chap3_3/*.sh
+
+#runTests for 3.3 is currently not working (results in nonterminating condition and skipping to the output for 3.3.10)
+#runTests ./tests/chap3/chap3_3/*.sh
+

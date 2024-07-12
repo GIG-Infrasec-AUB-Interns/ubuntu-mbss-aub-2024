@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source utils.sh
 {
     l_output="" l_output2=""
     a_parlist=("net.ipv4.ip_forward=0" "net.ipv6.conf.all.forwarding=0")
@@ -53,5 +54,8 @@
     else
         echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
+        
+        #Remediation 
+        runFix "3.3.1" fixes/chap3/chap3_3/chap3_3_1.sh
     fi
 }
