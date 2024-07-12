@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 {
     echo "Ensuring XDCMP is not enabled (1.7.10)..."
