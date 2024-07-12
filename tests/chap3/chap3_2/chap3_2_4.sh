@@ -1,10 +1,9 @@
-
 #!/usr/bin/env bash
 source utils.sh
 
 {
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
-    l_mname="tipc" # set module name
+    l_mname="sctp" # set module name
     l_mtype="net" # set module type
     l_searchloc="/lib/modprobe.d/*.conf /usr/local/lib/modprobe.d/*.conf /run/modprobe.d/*.conf /etc/modprobe.d/*.conf"
     l_mpath="/lib/modules/**/kernel/$l_mtype"
@@ -61,8 +60,8 @@ source utils.sh
     else
         echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
-
+        
         #Remediation 
-        runFix "3.2.2" fixes/chap3/chap3_2/chap3_2_2.sh
+        runFix "3.2.4" fixes/chap3/chap3_2/chap3_2_4.sh  
     fi
 }

@@ -1,5 +1,7 @@
-#!/usr/bin/bash
-{
+
+#!/usr/bin/env bash
+source utils.sh
+
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
     l_mname="rds" # set module name
     l_mtype="net" # set module type
@@ -58,5 +60,8 @@
     else
         echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
+
+        #Remediation 
+        runFix "3.2.3" fixes/chap3/chap3_2/chap3_2_3.sh
     fi
 }

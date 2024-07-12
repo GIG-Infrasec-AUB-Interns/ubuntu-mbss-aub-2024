@@ -14,7 +14,8 @@ echo "Ubuntu 22.04.4 Benchmark Tests based on CIS Benchmarks"
 echo "Developed by AUB Interns: Gabriel Calubayan, Ieiaiel Sanceda, Gabriel Limbaga"
 echo ""
 
-# Chapter 1 Initial Setup
+# # Chapter 1 Initial Setup
+
 
 # 1.1 Filesystem
 echo "Running Filesystem tests (Chapter 1.1)..."
@@ -38,6 +39,7 @@ runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_6/*.sh
 echo "Testing config of /var/log/audit (1.1.2.7)..."
 runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_7/*.sh
 
+
 # 1.3 Mandatory Access Control   # test 1.3.2 is problematic, grub not updating
 # echo "Testing Mandatory Access Control (1.3)..."
 # echo "Testing AppArmor configuration (1.3.1)..."
@@ -60,6 +62,18 @@ if check_gdm_installed; then
 else
     echo "GDM is not installed. Skipping GNOME Display Manager configuration."
 fi
+
+# 3.1 Network device configuration
+echo "Running Network device configuration (Chapter 3.1)..."
+runTests ./tests/chap3/chap3_1/*.sh
+echo "Running Network kernel module configuration(Chapter 3.2)..."
+runTests ./tests/chap3/chap3_2/*.sh
+
+#runTests for 3.3 is currently not working (results in nonterminating condition and skipping to the output for 3.3.10)
+#runTests ./tests/chap3/chap3_3/*.sh
+
+echo "Running UncomplicatedFirewall configuration (Chapter 4.1)..."
+runTests ./tests/chap4/chap4_1/*.sh
 
 # Chapter 2 Services
 
@@ -104,5 +118,6 @@ if [[ -z "$at_installed" ]]; then
 else
     echo "at not installed. Skipping 2.4.1 tests..."
 fi
+
 
 

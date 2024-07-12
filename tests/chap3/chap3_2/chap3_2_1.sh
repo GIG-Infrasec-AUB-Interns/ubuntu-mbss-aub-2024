@@ -1,4 +1,7 @@
-#!/usr/bin/bash
+
+#!/usr/bin/env bash
+source utils.sh
+
 
 {
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
@@ -58,5 +61,8 @@
     else
         echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
+
+        #Remediation 
+        runFix "3.2.1" fixes/chap3/chap3_2/chap3_2_1.sh
     fi
 }
