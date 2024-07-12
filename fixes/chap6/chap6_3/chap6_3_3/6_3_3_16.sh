@@ -16,5 +16,5 @@
       printf "Reboot required to load rules\n"; 
     fi
 
-    echo "successful and unsuccessful attempts to use the setfacl command are now recorded."
+    echo "Successful and unsuccessful attempts to use the setfacl command are now recorded."
 }
