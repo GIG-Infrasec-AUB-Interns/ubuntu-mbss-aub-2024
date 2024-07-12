@@ -9,7 +9,7 @@
         if [ "$l_krp" = "$l_kpvalue" ]; then
             l_output="$l_output\n - \"$l_kpname\" is correctly set to \"$l_krp\" in the running configuration"
         else
-        l_output2="$l_output2\n - \"$l_kpname\" is incorrectly set to \"$l_krp\" in the running configuration and should have a value of: \"$l_kpvalue\""
+            l_output2="$l_output2\n - \"$l_kpname\" is incorrectly set to \"$l_krp\" in the running configuration and should have a value of: \"$l_kpvalue\""
         fi
         unset A_out; declare -A A_out # Check durable setting (files)
         while read -r l_out; do
