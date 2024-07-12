@@ -72,6 +72,7 @@ runTests ./tests/chap3/chap3_2/*.sh
 #runTests for 3.3 is currently not working (results in nonterminating condition and skipping to the output for 3.3.10)
 #runTests ./tests/chap3/chap3_3/*.sh
 
+# 4.1 UncomplicatedFirewall configuration
 echo "Running UncomplicatedFirewall configuration (Chapter 4.1)..."
 runTests ./tests/chap4/chap4_1/*.sh
 
