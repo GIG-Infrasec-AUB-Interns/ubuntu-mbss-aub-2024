@@ -1,4 +1,6 @@
 source utils.sh
+
+# 4.1.3 Ensure ufw service is enabled
 {
     ufw allow proto tcp from any to any port 22
 
