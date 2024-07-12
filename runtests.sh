@@ -123,4 +123,4 @@ echo "Running UncomplicatedFirewall configuration (Chapter 4.1)..."
 runTests ./tests/chap4/chap4_1/*.sh
 # for 4.1, 4.1.4 - 4.1.6 were not tested since they needed input for site policies which is unavailable to the team at the moment.
 runTests ./tests/chap4/chap4_2/*.sh
-
+# for 4.2 there is an icmpv6 parsing error so we may also not test it.
