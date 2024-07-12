@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# 3.1.2 Ensure wireless interfaces are disabled
 {
     l_output="" l_output2=""
     module_chk()

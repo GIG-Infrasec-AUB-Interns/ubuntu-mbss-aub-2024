@@ -1,7 +1,8 @@
-
 #!/usr/bin/env bash
 source utils.sh
 
+# 3.2.3 Ensure rds kernel module is not available
+{
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
     l_mname="rds" # set module name
     l_mtype="net" # set module type

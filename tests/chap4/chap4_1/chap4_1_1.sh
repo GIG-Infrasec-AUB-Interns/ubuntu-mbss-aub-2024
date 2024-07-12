@@ -1,4 +1,6 @@
 source utils.sh
+
+# 4.1.1 Ensure ufw is installed
 {
     query_output=$(dpkg-query -s ufw &>/dev/null && echo "ufw is installed")
     if [["$query_output" == "ufw is installed"]]; then
