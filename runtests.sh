@@ -125,3 +125,5 @@ runTests ./tests/chap4/chap4_1/*.sh
 # runTests ./tests/chap4/chap4_2/*.sh
 # for 4.2 there is an icmpv6 parsing error in the setup file so we may also not test it.
 runTests ./tests/chap4/chap4_3/chap4_3_1/*.sh
+
+runTests ./tests/chap4/chap4_3/chap4_3_2/*.sh
