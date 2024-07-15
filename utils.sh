@@ -48,3 +48,37 @@ function runFix() {
                 ;;
         esac
 }
+
+function check() { # For 6.3.3 tests, check if output matches expected output
+    output=$1
+    shift
+    expected=("$@")
+    matches="true"
+
+    for line in "${expected[@]}"; do
+      if ! echo "$output" | grep -qF "$line"; then
+        matches="false"
+        break
+      fi
+    done
+
+    echo "$matches"
+}
+
+function newRule() { # For 6.3.3 remediation scripts, add new audit rules
+    file=$1
+    shift
+    rules=("$@")
+
+    if [ -f "$file" ]; then # Append rules to file if it exists
+        printf '%s\n' "${rules[@]}" >> "$file"
+    else # Create file and add rules if it does not exist
+        printf '%s\n' "${rules[@]}" > "$file"
+    fi
+
+    augenrules --load
+    
+    if [[ $(auditctl -s | grep "enabled") =~ "2" ]]; then 
+        printf "Reboot required to load rules\n"; 
+    fi
+}

@@ -61,6 +61,7 @@
   else 
     echo -e "\n- Audit Result:\n ** FAIL **\n - * Reasons for audit failure * :$l_output2\n" 
     [ -n "$l_output" ] && echo -e "\n - * Correctly configured * :\n$l_output\n"
-    echo "For more information, please visit https://downloads.cisecurity.org/#/"
+
+    runFix "6.1.3" fixes/chap6/chap6_1/6_1_3.sh # Remediation
   fi 
 }
