@@ -1,6 +1,6 @@
 #!/bin/bash
 source utils.sh
-{
+
 # Get the iptables policies for INPUT, FORWARD, and OUTPUT chains
 input_policy=$(iptables -L INPUT -n -v | grep -E '^Chain INPUT ' | awk '{print $4}')
 forward_policy=$(iptables -L FORWARD -n -v | grep -E '^Chain FORWARD ' | awk '{print $4}')
@@ -15,4 +15,3 @@ else
     echo "Audit Result: Fail"
     #Remediation
     runFix "4.3.2.1" fixes/chap4/chap4_3/chap4_3_2/chap4_3_2_1.sh
-}
