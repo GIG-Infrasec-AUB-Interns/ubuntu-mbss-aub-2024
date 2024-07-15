@@ -9,5 +9,6 @@ TIME_SYNCH=""
 
 # used for section 5.4
 SET_PASS_MAX_DAYS=365 # The maximum number of days a password may be used
-SET_PASS_MIN_DAYS=1
-SET_WARN_AGE=7
+SET_PASS_MIN_DAYS=1 # The minimum number of days a password expires
+SET_WARN_AGE=7 # The number of days a warning is given before a password expires
+SET_HASHING_ALGO="YESCRYPT" # Password hashing algorithm to be used
