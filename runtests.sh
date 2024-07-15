@@ -127,3 +127,4 @@ runTests ./tests/chap4/chap4_1/*.sh
 runTests ./tests/chap4/chap4_3/chap4_3_1/*.sh
 
 runTests ./tests/chap4/chap4_3/chap4_3_2/*.sh
+runTests ./tests/chap4/chap4_3/chap4_3_3/*.sh
