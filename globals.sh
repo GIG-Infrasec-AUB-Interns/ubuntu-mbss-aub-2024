@@ -10,3 +10,4 @@ TIME_SYNCH=""
 # used for section 5.4
 SET_PASS_MAX_DAYS=365 # The maximum number of days a password may be used
 SET_PASS_MIN_DAYS=1
+SET_WARN_AGE=7
