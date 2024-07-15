@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# 4.3.3 Configure IPv6 ip6tables
 # Flush ip6tables rules
 ip6tables -F
 

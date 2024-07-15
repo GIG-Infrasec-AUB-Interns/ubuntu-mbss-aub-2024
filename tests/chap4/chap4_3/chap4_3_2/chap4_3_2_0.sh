@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 4.3.2 Configure IPv4 iptables
+
 # Flush IPtables rules
 iptables -F
 

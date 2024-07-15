@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 source utils.sh
 
+# 4.3.3.1 Ensure ip6tables default deny firewall policy
 {
     if grep -Pqs '^\h*0\b' /sys/module/ipv6/parameters/disable; then
         ipv6check=true

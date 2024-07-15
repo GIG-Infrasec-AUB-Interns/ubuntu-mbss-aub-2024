@@ -1,5 +1,7 @@
 #!/bin/bash
 source utils.sh
+
+# 4.3.2.1 Ensure iptables default deny firewall policy
 {
 # Get the iptables policies for INPUT, FORWARD, and OUTPUT chains
 input_policy=$(iptables -L INPUT -n -v | grep -E '^Chain INPUT ' | awk '{print $4}')
