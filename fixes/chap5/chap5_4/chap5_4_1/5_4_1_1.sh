@@ -18,5 +18,5 @@ source globals.sh
     for user in $users_pass_over_max; do
         chage --maxdays $SET_PASS_MAX_DAYS $user # value editable in globals.sh
     end
-
+    echo "Remediation successful."
 }
