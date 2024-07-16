@@ -1,3 +1,4 @@
+#!usr/bin/bash
 source utils.sh
 {
     query_output=$(dpkg-query -s ufw &>/dev/null && echo "ufw is installed")
