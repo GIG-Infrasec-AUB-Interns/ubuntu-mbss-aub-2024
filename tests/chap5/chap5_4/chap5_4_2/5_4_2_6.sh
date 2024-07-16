@@ -11,6 +11,8 @@ source globals.sh
         echo "PASS"
     else
         echo "FAIL"
+        echo "Script output:"
+        echo "$grep_output"
         runFix "5.4.2.6" fixes/chap5/chap5_4/chap5_4_2/5_4_2_6.sh
     fi
 }

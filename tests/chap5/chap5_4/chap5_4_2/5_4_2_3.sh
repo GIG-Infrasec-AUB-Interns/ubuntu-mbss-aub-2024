@@ -11,6 +11,8 @@ source globals.sh
         echo "PASS"
     else
         echo "FAIL"
+        echo "Groups with GID 0:"
+        echo "$gid_0_groups"
         runFix "5.4.2.3" fixes/chap5/chap5_4/chap5_4_2/5_4_2_3.sh
     fi
 }

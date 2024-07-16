@@ -11,6 +11,8 @@ source globals.sh
         echo "PASS"
     else
         echo "FAIL"
+        echo "Accounts with UID 0:"
+        echo "$root_output"
         runFix "5.4.2.1" fixes/chap5/chap5_4/chap5_4_2/5_4_2_1.sh
     fi
 }

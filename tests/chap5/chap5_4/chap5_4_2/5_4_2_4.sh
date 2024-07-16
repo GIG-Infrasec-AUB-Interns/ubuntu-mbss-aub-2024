@@ -11,6 +11,8 @@ source globals.sh
         echo "PASS"
     else
         echo "FAIL"
+        echo "Script output:"
+        echo "$rootpw_output"
         runFix "5.4.2.4" fixes/chap5/chap5_4/chap5_4_2/5_4_2_4.sh
     fi
 }

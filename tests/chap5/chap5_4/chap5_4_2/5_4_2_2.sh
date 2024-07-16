@@ -11,6 +11,8 @@ source globals.sh
         echo "PASS"
     else
         echo "FAIL"
+        echo "Accounts with GID 0:"
+        echo "$gid_0_users"
         runFix "5.4.2.2" fixes/chap5/chap5_4/chap5_4_2/5_4_2_2.sh
     fi
 }
