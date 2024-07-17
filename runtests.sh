@@ -63,17 +63,6 @@ else
     echo "GDM is not installed. Skipping GNOME Display Manager configuration."
 fi
 
-# 3.1 Network device configuration
-echo "Running Network device configuration (Chapter 3.1)..."
-runTests ./tests/chap3/chap3_1/*.sh
-echo "Running Network kernel module configuration(Chapter 3.2)..."
-runTests ./tests/chap3/chap3_2/*.sh
-
-#runTests for 3.3 is currently not working (results in nonterminating condition and skipping to the output for 3.3.10)
-#runTests ./tests/chap3/chap3_3/*.sh
-
-echo "Running UncomplicatedFirewall configuration (Chapter 4.1)..."
-runTests ./tests/chap4/chap4_1/*.sh
 
 # Chapter 2 Services
 
@@ -119,5 +108,34 @@ else
     echo "at not installed. Skipping 2.4.1 tests..."
 fi
 
+# 3.1 Network device configuration
+echo "Running Network device configuration (Chapter 3.1)..."
+runTests ./tests/chap3/chap3_1/*.sh
+echo "Running Network kernel module configuration(Chapter 3.2)..."
+runTests ./tests/chap3/chap3_2/*.sh
 
+#runTests for 3.3 is currently not working (results in nonterminating condition and skipping to the output for 3.3.10)
+#runTests ./tests/chap3/chap3_3/*.sh
 
+echo "Running UncomplicatedFirewall configuration (Chapter 4.1)..."
+runTests ./tests/chap4/chap4_1/*.sh
+
+# Chapter 5
+
+echo "Running pam_faillock module configuration tests (Chapter 5.3.3.1)..."
+runTests ./tests/chap5/chap5_3/chap5_3_3/chap5_3_3_1/*.sh
+
+echo "Running pam_pwquality module configuration tests (Chapter 5.3.3.2)..."
+runTests ./tests/chap5/chap5_3/chap5_3_3/chap5_3_3_2/*.sh
+
+echo "Running pam_pwhistory module configuration tests (Chapter 5.3.3.3)..."
+runTests ./tests/chap5/chap5_3/chap5_3_3/chap5_3_3_3/*.sh
+
+echo "Running shadow password suite parameter configuration tests (Chapter 5.4.1)..."
+runTests ./tests/chap5/chap5_4/chap5_4_1/*.sh
+
+echo "Running root and system accounts and environment configuration tests (Chapter 5.4.2)..."
+runTests ./tests/chap5/chap5_4/chap5_4_2/*.sh
+
+echo "Running user default environment configuration tests (Chapter 5.4.3)..."
+runTests ./tests/chap5/chap5_4/chap5_4_3/*.sh
