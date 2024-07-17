@@ -17,6 +17,7 @@ OCREDIT=-1
 LCREDIT=-1
 MAXREPEAT=3
 MAXSEQUENCE=3
+ENFORCING_VALUE=0
 
 # used for section 5.4
 SET_PASS_MAX_DAYS=365 # The maximum number of days a password may be used
