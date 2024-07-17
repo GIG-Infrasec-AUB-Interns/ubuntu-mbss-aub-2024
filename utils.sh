@@ -82,3 +82,11 @@ function newRule() { # For 6.3.3 remediation scripts, add new audit rules
         printf "Reboot required to load rules\n"; 
     fi
 }
+
+file_umask_chk() { # for 5.4.3.3
+        if grep -Psiq -- '^\h*umask\h+(0?[0-7][2-7]7|u(=[rwx]{0,3}),g=([rx]{0,2}),o=)(\h*#.*)?$' "$l_file"; then 
+            l_out="$l_out\n - umask is set correctly in \"$l_file\"" 
+        elif grep -Psiq -- '^\h*umask\h+(([0-7][0-7][01][0-7]\b|[0-7][0-7][0-7][0-6]\b)|([0-7][01][0-7]\b|[0-7][0-7][0-6]\b)|(u=[rwx]{1,3},)?(((g=[rx]?[rx]?w[rx]?[rx]?\b)(,o=[rwx]{1,3})?)|((g=[wrx]{1,3},)?o=[wrx]{1,3}\b)))' "$l_file"; then 
+            l_output2="$l_output2\n   - \"$l_file\"" 
+        fi 
+    } 
