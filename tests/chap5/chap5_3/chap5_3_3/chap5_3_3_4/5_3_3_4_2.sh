@@ -20,6 +20,6 @@ source globals.sh
         echo "Overall Result: PASS"
     else
         echo "Overall Result: FAIL"
-        runFix "5.3.3.4.2" fixes/chap5/chap5_3/chap5_3_3/chap5_3_5/5_3_3_4_2.sh
+        runFix "5.3.3.4.1" fixes/chap5/chap5_3/chap5_3_3/chap5_3_3_4/5_3_3_4_2.sh
     fi
 }
