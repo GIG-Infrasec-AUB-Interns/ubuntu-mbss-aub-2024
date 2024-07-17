@@ -8,7 +8,13 @@ IDLE_DELAY_THRESH=900 # idle delay should be LEQ than this (in seconds). edit as
 TIME_SYNCH=""
 
 # used for section 5.3
-SET_MINPW_LENGTH=14 # minimum password length
+SET_MINPW_LENGTH=14 # minimum password 
+# password complexity configurations
+MINCLASS=3
+DCREDIT=-1
+UCREDIT=-1
+OCREDIT=-1
+LCREDIT=-1
 
 # used for section 5.4
 SET_PASS_MAX_DAYS=365 # The maximum number of days a password may be used
