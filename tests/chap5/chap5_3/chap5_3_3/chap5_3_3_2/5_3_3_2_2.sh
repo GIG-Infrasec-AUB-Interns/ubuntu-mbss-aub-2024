@@ -1,27 +1,28 @@
 #!/usr/bin/bash
 source utils.sh
+source globals.sh
 
 {
-    echo "Ensure password number of changed characters is configured (5.3.3.2.1)..."
+    echo "Ensure minimum password length is configured (5.3.3.2.2)..."
     fail_flag=0
 
-    grep_query=$(grep -Psi -- '^\h*difok\h*=\h*([2-9]|[1-9][0-9]+)\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf)
-    difok_value=$(echo "$grep_query" | awk -F '=' '{print $2}' | tr -d ' ')
+    grep_query=$(grep -Psi -- '^\h*minlen\h*=\h*(1[4-9]|[2-9][0-9]|[1-9][0-9]{2,})\b'/etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf)
+    pw_length=$(echo "$grep_query" | awk -F '=' '{print $2}' | tr -d ' ')
 
-    if [[ "$difok_value" -ge 2 ]]; then
+    if [[ "$pw_length" -ge $SET_MINPW_LENGTH ]]; then # set to 14 in globals.sh
         echo "PASS"
     else    
-        echo "FAIL: difok option is NOT set to 2 or more."
+        echo "FAIL: Minimum password length is less than $SET_MINPW_LENGTH."
         echo "$grep_query"
         fail_flag=1
     fi
 
-    grep_query2=$(grep -Psi -- '^\h*password\h+(requisite|required|sufficient)\h+pam_pwquality\.so\h+([^#\n\r]+\h+)?difok\h*=\h*([0-1])\b' /etc/pam.d/common-password)
+    grep_query2=$(grep -Psi -- '^\h*password\h+(requisite|required|sufficient)\h+pam_pwquality\.so\h+([^#\n\r]+\h+)?minlen\h*=\h*([0-9]|1[0-3])\b' /etc/pam.d/system-auth /etc/pam.d/common-password)
 
     if [[ -z "$grep_query2" ]]; then
         echo "PASS"
     else
-        echo "FAIL: difok option is NOT set to 2 or more."
+        echo "FAIL: minlen is not set OR is less than $SET_MINPW_LENGTH."
         echo "$grep_query2"
         fail_flag=1
     fi
