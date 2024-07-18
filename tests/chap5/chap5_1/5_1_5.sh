@@ -1,6 +1,6 @@
  
 #! /usr/bin/bash
-
+source utils.sh
 # 5.1.5 Ensure sshd Banner is configured
 
 {

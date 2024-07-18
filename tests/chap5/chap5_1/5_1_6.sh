@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source utils.sh
 # 5.1.5 Ensure sshd Banner is configured
 {
     # Run the sshd -T command to retrieve SSH server configuration and grep for ciphers
@@ -14,6 +14,8 @@
         if echo "$cipher_output" | grep -q "chacha20-poly1305@openssh.com"; then
             echo "CVE-2023-48795 should be reviewed and system patched."
         fi
+        #Remediation 
+        runFix "5.1.6" fixes/chap5/chap5_1/5_1_6.sh  
     else
         echo "Audit Result: Pass"
         echo "No weak ciphers found."

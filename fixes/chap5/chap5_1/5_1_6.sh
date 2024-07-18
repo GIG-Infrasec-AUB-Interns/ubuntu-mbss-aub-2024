@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*Ciphers\b/ { s/^#\?\s*Ciphers\b.*/Ciphers -3des-cbc,aes128-cbc,aes192-cbc,aes256-cbc,chacha20-poly1305@openssh.com/; t; a Ciphers -3des-cbc,aes128-cbc,aes192-cbc,aes256-cbc,chacha20-poly1305@openssh.com; }' /etc/ssh/sshd_config
