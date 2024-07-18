@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*GSSAPIAuthentication\b/d; /^\s*Include\b/i GSSAPIAuthentication no' /etc/ssh/sshd_config
