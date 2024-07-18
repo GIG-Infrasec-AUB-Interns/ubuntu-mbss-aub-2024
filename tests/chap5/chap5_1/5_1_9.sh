@@ -3,7 +3,7 @@ source utils.sh
 # 5.1.9 Ensure sshd GSSAPIAuthentication is disabled
 
 {
-output=$( sshd -T | grep gssapiauthentication)
+output=$(sshd -T | grep gssapiauthentication)
 
 if [[ "$output" == "gssapiauthentication no" ]]; then
     echo "Audit Result: Pass"

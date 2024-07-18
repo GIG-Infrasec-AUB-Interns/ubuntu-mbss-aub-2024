@@ -3,7 +3,7 @@ source utils.sh
 # 5.1.8 Ensure sshd DisableForwarding is enabled
 
 {
-output=$( sshd -T | grep -i disableforwarding)
+output=$(sshd -T | grep -i disableforwarding)
 
 if [[ "$output" == "disableforwarding yes" ]]; then
     echo "Audit Result: Pass"

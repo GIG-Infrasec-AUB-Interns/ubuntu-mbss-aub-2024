@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*IgnoreRhosts\b/d; /^\s*Include\b/i IgnoreRhosts yes' /etc/ssh/sshd_config
