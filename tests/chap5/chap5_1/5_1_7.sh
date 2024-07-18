@@ -18,7 +18,7 @@ source utils.sh
 
     else
         echo "Audit Result: Fail"
-        #Remediation 
+        #Remediation currently not working
         runFix "5.1.7" fixes/chap5/chap5_1/5_1_7.sh
     fi
 }

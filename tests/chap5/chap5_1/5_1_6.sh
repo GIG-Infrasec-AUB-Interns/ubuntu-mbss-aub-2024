@@ -14,7 +14,7 @@ source utils.sh
         if echo "$cipher_output" | grep -q "chacha20-poly1305@openssh.com"; then
             echo "CVE-2023-48795 should be reviewed and system patched."
         fi
-        #Remediation 
+        #Remediation currently not working
         runFix "5.1.6" fixes/chap5/chap5_1/5_1_6.sh  
     else
         echo "Audit Result: Pass"
