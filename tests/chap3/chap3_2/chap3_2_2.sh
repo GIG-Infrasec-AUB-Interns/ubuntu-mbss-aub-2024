@@ -2,6 +2,7 @@
 #!/usr/bin/env bash
 source utils.sh
 
+# 3.2.2 Ensure tipc kernel module is not available
 {
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
     l_mname="tipc" # set module name
