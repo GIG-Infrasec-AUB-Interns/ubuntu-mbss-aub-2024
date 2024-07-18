@@ -107,6 +107,64 @@ echo ""
 #     echo "at not installed. Skipping 2.4.1 tests..."
 # fi
 
+
+# Chapter 2 Services
+
+# 2.1 Server Services
+echo "Running server services configuration tests (Chapter 2.1)..."
+runTests ./tests/chap2/chap2_1/*.sh
+
+echo "Running client services configuration tests (Chapter 2.2)..."
+runTests ./tests/chap2/chap2_2/*.sh
+
+echo "Running time synchronization configuration tests (Chapter 2.3)..."
+echo "Ensuring time synchronization is in use (Chapter 2.3.1)..."
+runTests ./tests/chap2/chap2_2/chap2_3_1/*.sh
+
+if [[ "$TIME_SYNCH" == "systemd-timesyncd" ]]; then
+    echo "Checking systemd-timesyncd configuration (Chapter 2.3.2)..."
+    runTests ./tests/chap2/chap2_2/chap2_3_2/*.sh
+elif [[ "$TIME_SYNCH" == "chrony" ]]; then
+    echo "Checking chrony configuration (Chapter 2.3.3)..."
+    runTests ./tests/chap2/chap2_2/chap2_3_3/*.sh
+else
+    echo "No time synchronization in use."
+fi
+
+echo "Running job scheduler tests (2.4)..."
+
+cron_installed=$(dpkg -l | grep cron)
+
+if [[ -z "$cron_installed" ]]; then
+    echo "Running cron configuration tests (2.4.1)..."
+    runTests ./tests/chap2/chap2_4/chap2_4_1/*.sh
+else
+    echo "cron not installed. Skipping 2.4.1 tests..."
+fi
+
+
+at_installed=$(dpkg -l | grep at)
+
+if [[ -z "$at_installed" ]]; then
+    echo "Running at configuration tests (2.4.2)..."
+    runTests ./tests/chap2/chap2_4/chap2_4_2/*.sh
+else
+    echo "at not installed. Skipping 2.4.1 tests..."
+fi
+
+# Chapter 3
+# 3.1 Network device configuration
+echo "Running Network device configuration (Chapter 3.1)..."
+runTests ./tests/chap3/chap3_1/*.sh
+echo "Running Network kernel module configuration(Chapter 3.2)..."
+runTests ./tests/chap3/chap3_2/*.sh
+
+#runTests for 3.3 is currently not working (results in nonterminating condition and skipping to the output for 3.3.10)
+#runTests ./tests/chap3/chap3_3/*.sh
+
+echo "Running UncomplicatedFirewall configuration (Chapter 4.1)..."
+runTests ./tests/chap4/chap4_1/*.sh
+
 # 3.1 Network device configuration
 echo "Running Network device configuration (Chapter 3.1)..."
 runTests ./tests/chap3/chap3_1/*.sh
@@ -118,6 +176,7 @@ runTests ./tests/chap3/chap3_2/*.sh
 #runTests for 3.3 is currently not working (results in nonterminating condition and skipping to the output for 3.3.10)
 #runTests ./tests/chap3/chap3_3/*.sh
 
+# Chapter 4
 # 4.1 UncomplicatedFirewall configuration
 echo "Running UncomplicatedFirewall configuration (Chapter 4.1)..."
 runTests ./tests/chap4/chap4_1/*.sh
@@ -130,3 +189,23 @@ runTests ./tests/chap4/chap4_3/chap4_3_1/*.sh
 
 runTests ./tests/chap4/chap4_3/chap4_3_2/*.sh
 runTests ./tests/chap4/chap4_3/chap4_3_3/*.sh
+# Chapter 5
+
+echo "Running pam_faillock module configuration tests (Chapter 5.3.3.1)..."
+runTests ./tests/chap5/chap5_3/chap5_3_3/chap5_3_3_1/*.sh
+
+echo "Running pam_pwquality module configuration tests (Chapter 5.3.3.2)..."
+runTests ./tests/chap5/chap5_3/chap5_3_3/chap5_3_3_2/*.sh
+
+echo "Running pam_pwhistory module configuration tests (Chapter 5.3.3.3)..."
+runTests ./tests/chap5/chap5_3/chap5_3_3/chap5_3_3_3/*.sh
+
+echo "Running shadow password suite parameter configuration tests (Chapter 5.4.1)..."
+runTests ./tests/chap5/chap5_4/chap5_4_1/*.sh
+
+echo "Running root and system accounts and environment configuration tests (Chapter 5.4.2)..."
+runTests ./tests/chap5/chap5_4/chap5_4_2/*.sh
+
+echo "Running user default environment configuration tests (Chapter 5.4.3)..."
+runTests ./tests/chap5/chap5_4/chap5_4_3/*.sh
+

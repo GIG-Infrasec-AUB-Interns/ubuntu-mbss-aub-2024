@@ -1,3 +1,4 @@
+#!usr/bin/bash
 source utils.sh
 
 # 4.1.1 Ensure ufw is installed
