@@ -126,6 +126,9 @@ echo "Running Configure SSH server tests (Chapter 5.1.1)..."
 runTests ./tests/chap5/chap5_1/*.sh
 runTests ./tests/chap5/chap5_1/chap5_1/*.sh
 runTests ./tests/chap5/chap5_1/chap5_1_1/*.sh
+
+runTests ./tests/chap5/chap5_2/*.sh
+
 # echo "Running pam_faillock module configuration tests (Chapter 5.3.3.1)..."
 # runTests ./tests/chap5/chap5_3/chap5_3_3/chap5_3_3_1/*.sh
 
