@@ -30,9 +30,9 @@ source utils.sh
         # Remediation
         echo "Create an empty group that will be specified for use of the su command. "
         echo "The group should be named according to site policy."
-        echo "groupadd sugroup"
+        echo -e "\n groupadd sugroup\n"
         echo "Add the following line to the /etc/pam.d/su file, specifying the empty group"
-        echo "auth required pam_wheel.so use_uid group=sugroup"
+        echo -e "\nauth required pam_wheel.so use_uid group=sugroup\n"
 
         echo "for running the test scripts, replace all 'nosu' group name fields in the code with the new name for the empty group"
 
