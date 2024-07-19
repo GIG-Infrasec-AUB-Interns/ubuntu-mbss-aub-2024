@@ -7,7 +7,7 @@ source ./demo/globals.sh
 # to run, please run the commands below on the terminal
 
 # su root
-# chmod +x runtests.sh 
+# chmod +x runDemo.sh 
 # ./demo/runDemo.sh
 
 echo "Ubuntu 22.04.4 Benchmark Tests DEMO"
