@@ -27,7 +27,7 @@ source globals.sh
         fail_flag=1
     fi
 
-    if [[ $grep_query -eq 0 ]]; then
+    if [[ $fail_flag -eq 0 ]]; then
         echo "PASS"
     else
         echo "FAIL"
