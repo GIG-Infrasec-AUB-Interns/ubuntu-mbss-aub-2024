@@ -20,7 +20,7 @@ source utils.sh
         audit_result=false
     fi
 
-    if $audit_result; then
+    if [[ $audit_result -eq "true" ]]; then
         echo "Audit Result: PASS"
     else
         echo "Audit Result: FAIL"
