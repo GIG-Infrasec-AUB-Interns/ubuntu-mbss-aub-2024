@@ -6,7 +6,7 @@ source utils.sh
 
     # Set deny setting in /etc/security/faillock.conf to 5
     if grep -q "^\s*#\?\s*deny\s*=" /etc/security/faillock.conf; then
-        sed -i 's/^\s*#\?\s*deny\s*=.*/deny = 5/' /etc/security/faillock.conf
+        sed -i 's/^\s*#\?\s*deny\s*=.*/# deny = 5/' /etc/security/faillock.conf
     else
         echo "deny = 5" >> /etc/security/faillock.conf
     fi
