@@ -5,8 +5,8 @@ source utils.sh
     echo "[REMEDIATION] Ensure password failed attempts lockout is configured (5.3.3.1.1)..."
 
     # Set deny setting in /etc/security/faillock.conf to 5
-    if grep -q "deny" /etc/security/faillock.conf; then
-        sed -i 's/^\s*deny\s*=.*/deny = 5/' /etc/security/faillock.conf
+    if grep -q "^\s*#\?\s*deny\s*=" /etc/security/faillock.conf; then
+        sed -i 's/^\s*#\?\s*deny\s*=.*/deny = 5/' /etc/security/faillock.conf
     else
         echo "deny = 5" >> /etc/security/faillock.conf
     fi
