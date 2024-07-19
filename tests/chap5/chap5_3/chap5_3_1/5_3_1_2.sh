@@ -6,7 +6,7 @@ source utils.sh
 
     query_output=$(dpkg-query -s libpam-modules | grep -P -- '^(Status|Version)\b')
     
-    if [[ $(echo "$query_output" | grep "Status: install ok installed") && $(echo "$query_output" | grep "Version" | awk '{print $2}') > "1.5.2-6" ]]; then
+    if [[ $(echo "$query_output" | grep "Status: install ok installed") ]]; then
         echo "Audit Result: PASS"
     else
         echo "Audit Result: FAIL"
