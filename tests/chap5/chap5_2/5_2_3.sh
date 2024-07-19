@@ -12,7 +12,7 @@ source utils.sh
         echo "Audit Result: Fail"
 
         # Remediation
-        echo "Edit the file /etc/sudoers with visudo or a file in /etc/sudoers.d/ with visudo -f <PATHTO FILE> and add the following line:"
+        echo "5.2.3 Edit the file /etc/sudoers with visudo or a file in /etc/sudoers.d/ with visudo -f <PATHTO FILE> and add the following line:"
         echo "Defaults logfile="/var/log/sudo.log""
         
         read -p "Do you understand the instructions mentioned above? (Y/N):" ANSWER

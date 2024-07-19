@@ -6,7 +6,7 @@ source utils.sh
     output=$( grep -roP "timestamp_timeout=\K[0-9]*" /etc/sudoers* )
     if [[ -z "$output" ]]; then
         output2=$( sudo -V | grep "Authentication timestamp timeout:")
-        if [[ "$output2" == '"Authentication timestamp timeout: 15.0 minutes"']]; then
+        if [[ "$output2" == '"Authentication timestamp timeout: 15.0 minutes"' ]]; then
             echo "Audit Result: Pass" 
         elif [[ "$output2" == "-1"]]
             echo "Audit Result: Fail"
