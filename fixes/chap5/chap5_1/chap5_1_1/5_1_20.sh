@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*PermitRootLogin\b/d; /^\s*Include\b/i PermitRootLogin no' /etc/ssh/sshd_config

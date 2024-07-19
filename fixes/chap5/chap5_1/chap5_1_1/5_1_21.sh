@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*PermitUserEnvironment\b/d; /^\s*Include\b/i PermitUserEnvironment no' /etc/ssh/sshd_config

@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*PermitEmptyPasswords\b/d; /^\s*Include\b/i PermitEmptyPasswords no' /etc/ssh/sshd_config

@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*MaxSessions\b/d; /^\s*Include\b/i MaxSessions 10' /etc/ssh/sshd_config

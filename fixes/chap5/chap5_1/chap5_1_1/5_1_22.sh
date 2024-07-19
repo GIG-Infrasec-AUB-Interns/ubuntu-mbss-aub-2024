@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*UsePAM\b/d; /^\s*Include\b/i UsePAM yes' /etc/ssh/sshd_config

@@ -12,6 +12,6 @@ else
     echo "Audit Result: Fail"
 
     #Remediation 
-    runFix "5.1.11" fixes/chap5/chap5_1/5_1_11.sh  
+    runFix "5.1.11" fixes/chap5/chap5_1/chap5_1/5_1_11.sh  
 fi
 }

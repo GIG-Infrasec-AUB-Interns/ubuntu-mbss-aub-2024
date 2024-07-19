@@ -13,7 +13,7 @@ source utils.sh
         echo "Weak Key Exchange Algorithms detected: "
         echo "$output" | grep -E "$weak_kex"
         #Remediation 
-        runFix "5.1.12" fixes/chap5/chap5_1/5_1_12.sh
+        runFix "5.1.12" fixes/chap5/chap5_1/chap5_1/5_1_12.sh
     else
         echo "Audit Result: Pass"
     fi
