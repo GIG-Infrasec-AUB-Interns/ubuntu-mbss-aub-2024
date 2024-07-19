@@ -17,7 +17,7 @@ source utils.sh
         echo "$awk_output"
         echo "Audit Result: FAIL"
 
-        runFix "1.4.1" fixes/chap1/chap1_4/1_4_1.sh.sh
+        runFix "1.4.1" fixes/chap1/chap1_4/1_4_1.sh
 
     else
         echo "Superuser in GRUB check output:"
