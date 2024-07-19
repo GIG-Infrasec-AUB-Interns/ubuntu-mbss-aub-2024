@@ -36,7 +36,7 @@ source utils.sh
 
         echo "for running the test scripts, replace all 'nosu' group name fields in the code with the new name for the empty group"
 
-        read -p "Do you understand the instructions mentioned above? (Y/N):" ANSWER
+        read -p "5.2.7 Do you understand the instructions mentioned above? (Y/N):" ANSWER
         case "$ANSWER" in
             [Yy]*)
                 echo "Thank you. Please follow the instructions to make the necessary changes."

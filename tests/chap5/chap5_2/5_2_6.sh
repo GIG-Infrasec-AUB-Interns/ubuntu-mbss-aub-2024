@@ -29,7 +29,7 @@ source utils.sh
         echo "Defaults env_reset"
 
         
-        read -p "Do you understand the instructions mentioned above? (Y/N):" ANSWER
+        read -p "5.2.6 Do you understand the instructions mentioned above? (Y/N):" ANSWER
         case "$ANSWER" in
             [Yy]*)
                 echo "Thank you. Please follow the instructions to make the necessary changes."

@@ -17,7 +17,7 @@ source utils.sh
         echo "Defaults use_pty"
         echo "Edit the file /etc/sudoers with visudo and any files in /etc/sudoers.d/ with visudo -f <PATH TO FILE> and remove any occurrence of !use_pty"
 
-        read -p "Do you understand the instructions mentioned above? (Y/N):" ANSWER
+        read -p "5.2.2 Do you understand the instructions mentioned above? (Y/N):" ANSWER
         case "$ANSWER" in
             [Yy]*)
                 echo "Thank you. Please follow the instructions to make the necessary changes."

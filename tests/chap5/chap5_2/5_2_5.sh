@@ -17,7 +17,7 @@ source utils.sh
         echo "Based on the outcome of the audit procedure, use visudo -f <PATH TO FILE> to edit the relevant sudoers file."
         echo "Remove any occurrences of !authenticate tags in the file(s)"
         
-        read -p "Do you understand the instructions mentioned above? (Y/N):" ANSWER
+        read -p "5.2.5 Do you understand the instructions mentioned above? (Y/N):" ANSWER
         case "$ANSWER" in
             [Yy]*)
                 echo "Thank you. Please follow the instructions to make the necessary changes."

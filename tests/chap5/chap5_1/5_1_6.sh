@@ -1,6 +1,6 @@
 #!/bin/bash
 source utils.sh
-# 5.1.5 Ensure sshd Banner is configured
+# 5.1.6 Ensure sshd Ciphers are configured
 {
     # Run the sshd -T command to retrieve SSH server configuration and grep for ciphers
     cipher_output=$(sshd -T | grep -Pi -- '^ciphers\h+\"?([^#\n\r]+,)?((3des|blowfish|cast128|aes(128|192|256))-cbc|arcfour(128|256)?|rijndael-cbc@lysator\.liu\.se|chacha20-poly1305@openssh\.com)\b')

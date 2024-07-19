@@ -18,6 +18,7 @@
         echo "Audit Result: Pass"
     else
         echo "Audit Result: Fail"
+        echo "5.1.4 Configure specific users/groups for sshd access"
     fi
 
 }
