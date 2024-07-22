@@ -6,23 +6,25 @@ source globals.sh
     echo "Ensure minimum password length is configured (5.3.3.2.2)..."
     fail_flag=0
 
-    grep_query=$(grep -Psi -- '^\h*minlen\h*=\h*(1[4-9]|[2-9][0-9]|[1-9][0-9]{2,})\b'/etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf)
+    # Extract the minlen value from the configuration files
+    grep_query=$(grep -Pi -- '^\h*minlen\h*=\h*\d+\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf)
     pw_length=$(echo "$grep_query" | awk -F '=' '{print $2}' | tr -d ' ')
 
-    if [[ "$pw_length" -ge $SET_MINPW_LENGTH ]]; then # set to 14 in globals.sh
-        echo "PASS"
+    if [[ -n "$pw_length" && "$pw_length" -ge $SET_MINPW_LENGTH ]]; then
+        echo "PASS: Minimum password length is set to $pw_length."
     else    
         echo "FAIL: Minimum password length is less than $SET_MINPW_LENGTH."
         echo "$grep_query"
         fail_flag=1
     fi
 
-    grep_query2=$(grep -Psi -- '^\h*password\h+(requisite|required|sufficient)\h+pam_pwquality\.so\h+([^#\n\r]+\h+)?minlen\h*=\h*([0-9]|1[0-3])\b' /etc/pam.d/system-auth /etc/pam.d/common-password)
+    # Check for minlen settings in PAM configuration files
+    grep_query2=$(grep -Pi -- '^\h*password\h+(requisite|required|sufficient)\h+pam_pwquality\.so\h+([^#\n\r]+\h+)?minlen\h*=\h*([0-9]|1[0-3])\b' /etc/pam.d/system-auth /etc/pam.d/common-password)
 
     if [[ -z "$grep_query2" ]]; then
-        echo "PASS"
+        echo "PASS: No incorrect minlen settings found in PAM configuration."
     else
-        echo "FAIL: minlen is not set OR is less than $SET_MINPW_LENGTH."
+        echo "FAIL: minlen is not set OR is less than $SET_MINPW_LENGTH in PAM configuration."
         echo "$grep_query2"
         fail_flag=1
     fi
