@@ -7,7 +7,7 @@ source utils.sh
     audit_result=true
 
     # Check faillock.conf for unlock_time setting
-    faillock_conf_check=$(grep -Pi -- '^\h*unlock_time\h*=\h*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b' /etc/security/faillock.conf)
+    faillock_conf_check=$(grep -Pi -- '^\s*#\?\s*unlock_time\h*=\h*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b' /etc/security/faillock.conf)
     if [[ ! "$faillock_conf_check" =~ "unlock_time" ]]; then
         echo "FAIL: unlock_time setting in /etc/security/faillock.conf is not configured or less than 900"
         audit_result=false
