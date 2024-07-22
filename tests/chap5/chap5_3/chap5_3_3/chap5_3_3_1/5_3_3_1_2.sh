@@ -14,10 +14,10 @@ source globals.sh
     fail_interval_check=$(grep -Pi -- '^\h*#*\s*fail_interval\s*=\s*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b' /etc/security/faillock.conf)
     unlock_time_value2=$(echo "$fail_interval_check" | awk -F '=' '{print $2}' | tr -d ' ')
 
-    if [[ ! "$unlock_time_value" =~ ^[0-9]+$ ]] || [[ "$unlock_time_value" -lt "$SET_UNLOCK_TIME" ]]; then
+    if [[ ! -z $faillock_conf_check ]] && ([[ ! "$unlock_time_value" =~ ^[0-9]+$ ]] || [[ "$unlock_time_value" -lt "$SET_UNLOCK_TIME" ]]); then
         echo "FAIL: unlock_time setting in /etc/security/faillock.conf is not configured or less than $SET_UNLOCK_TIME"
         audit_result=false
-    elif [[ ! "$unlock_time_value2" =~ ^[0-9]+$ ]] || [[ "$unlock_time_value2" -lt "$SET_UNLOCK_TIME" ]]; then
+    elif [[ ! -z $fail_interval_check ]] && ([[ ! "$unlock_time_value2" =~ ^[0-9]+$ ]] || [[ "$unlock_time_value2" -lt "$SET_UNLOCK_TIME" ]]); then
         echo "FAIL: unlock_time setting in /etc/security/faillock.conf is not configured or less than $SET_UNLOCK_TIME"
         audit_result=false
     fi
