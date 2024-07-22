@@ -20,6 +20,7 @@ MAXSEQUENCE=3
 ENFORCING_VALUE=0
 SET_DENY=3 # number of invalid password attempts before locking out account
 SET_UNLOCK_TIME=900 # seconds before access is regranted after locking
+SET_ROOT_UNLOCK_TIME=60 # seconds before access is regranted after locking root account
 
 # used for section 5.4
 SET_PASS_MAX_DAYS=365 # The maximum number of days a password may be used

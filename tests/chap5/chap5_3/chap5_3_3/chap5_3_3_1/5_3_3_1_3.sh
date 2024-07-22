@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 source utils.sh
+source globals.sh
 
 {
     echo "Ensure password failed attempts lockout includes root account (5.3.3.1.3)..."
@@ -12,10 +13,10 @@ source utils.sh
         echo "PASS: even_deny_root is enabled."
     elif echo "$enable_query" | grep -Pq '#\s*root_unlock_time\s*=\s*(\d+)'; then
         root_unlock_time=$(echo "$enable_query" | grep -Po '#\s*root_unlock_time\s*=\s*\K\d+')
-        if [ "$root_unlock_time" -ge 60 ]; then
+        if [ "$root_unlock_time" -ge $SET_ROOT_UNLOCK_TIME ]; then
             echo "PASS: root_unlock_time is set to $root_unlock_time seconds."
         else
-            echo "FAIL: root_unlock_time is set to less than 60 seconds."
+            echo "FAIL: root_unlock_time is set to less than $SET_ROOT_UNLOCK_TIME seconds."
             fail_flag=1
         fi
     else
@@ -28,7 +29,7 @@ source utils.sh
     # Check root_unlock_time in faillock.conf
     unlock_time_output=$(grep -Pi -- '^\h*#\s*root_unlock_time\h*=\h*([1-9]|[1-5][0-9])\b' /etc/security/faillock.conf)
     if [ -z "$unlock_time_output" ]; then
-        echo "PASS: root_unlock_time in faillock.conf is 60 seconds or more."
+        echo "PASS: root_unlock_time in faillock.conf is $SET_ROOT_UNLOCK_TIME seconds or more."
     else
         echo "FAIL: root_unlock_time in faillock.conf is set to less than 60 seconds."
         echo "Query output:"
@@ -39,9 +40,9 @@ source utils.sh
     # Check root_unlock_time in PAM configuration files
     faillock_check=$(grep -Pi -- '^\h*auth\h+([^#\n\r]+\h+)pam_faillock\.so\h+([^#\n\r]+\h+)?root_unlock_time\h*=\h*([1-9]|[1-5][0-9])\b' /etc/pam.d/common-auth)
     if [ -z "$faillock_check" ]; then
-        echo "PASS: root_unlock_time in PAM configuration is 60 seconds or more."
+        echo "PASS: root_unlock_time in PAM configuration is $SET_ROOT_UNLOCK_TIME seconds or more."
     else
-        echo "FAIL: root_unlock_time in PAM configuration is set to less than 60 seconds."
+        echo "FAIL: root_unlock_time in PAM configuration is set to less than $SET_ROOT_UNLOCK_TIME seconds."
         echo "Query output:"
         echo "$faillock_check"
         fail_flag=1

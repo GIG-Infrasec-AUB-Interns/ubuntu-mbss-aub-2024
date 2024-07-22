@@ -1,19 +1,20 @@
 #!/usr/bin/bash
 source utils.sh
+source globals.sh
 
 {
     echo "[REMEDIATION] Ensure password failed attempts lockout includes root account (5.3.3.1.3)..."
 
     # Ensure even_deny_root is enabled
     if ! grep -q "even_deny_root" /etc/security/faillock.conf; then
-        echo "even_deny_root" >> /etc/security/faillock.conf
+        echo "# even_deny_root" >> /etc/security/faillock.conf
     fi
 
     # Set root_unlock_time to 60 seconds or more if not already set
-    if grep -q "root_unlock_time" /etc/security/faillock.conf; then
-        sed -i 's/^\s*root_unlock_time\s*=\s*[0-9]\+/root_unlock_time = 60/' /etc/security/faillock.conf
+    if grep -q "^\s*#\?\s*root_unlock_time" /etc/security/faillock.conf; then
+        sed -i 's/^\s*#\?\s*root_unlock_time\s*=\s*[0-9]\+/root_unlock_time = 60/' /etc/security/faillock.conf
     else
-        echo "root_unlock_time = 60" >> /etc/security/faillock.conf
+        echo "# root_unlock_time = $SET_ROOT_UNLOCK_TIME" >> /etc/security/faillock.conf
     fi
 
     # Remove incorrect root_unlock_time settings from PAM configuration files

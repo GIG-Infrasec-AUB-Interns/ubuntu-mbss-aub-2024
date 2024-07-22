@@ -6,7 +6,7 @@ source globals.sh
 
     # Set unlock_time setting in /etc/security/faillock.conf
     if grep -q "^\s*#\?\s*unlock_time\s*=" /etc/security/faillock.conf; then
-        sed -i 's/^\s*unlock_time\s*=.*/unlock_time = $SET_UNLOCK_TIME/' /etc/security/faillock.conf
+        sed -i 's/^\s*#\?\s*unlock_time\s*=.*/# unlock_time = $SET_UNLOCK_TIME/' /etc/security/faillock.conf
     else
         echo "# unlock_time = $SET_UNLOCK_TIME" >> /etc/security/faillock.conf
     fi
