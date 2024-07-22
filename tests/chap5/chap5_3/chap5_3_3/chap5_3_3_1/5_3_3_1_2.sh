@@ -8,7 +8,7 @@ source globals.sh
     audit_result=true
 
     # Check faillock.conf for unlock_time setting
-    faillock_conf_check=$(grep -Pi -- '^\s*#?\s*unlock_time\s*=\s*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b' /etc/security/faillock.conf)
+    faillock_conf_check=$(grep -Pi -- '^\h*#*\s*unlock_time\s*=\s*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b' /etc/security/faillock.conf)
     unlock_time_value=$(echo "$faillock_conf_check" | awk -F '=' '{print $2}' | tr -d ' ')
 
     if [[ ! "$unlock_time_value" =~ ^[0-9]+$ ]] || [[ "$unlock_time_value" -lt "$SET_UNLOCK_TIME" ]]; then

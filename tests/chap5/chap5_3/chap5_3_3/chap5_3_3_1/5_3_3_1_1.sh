@@ -7,7 +7,7 @@ source utils.sh
     audit_result=true
 
     # Check faillock.conf for deny setting
-    faillock_conf_check=$(grep -Pi -- '^\h*deny\h*=\h*[1-5]\b' /etc/security/faillock.conf)
+    faillock_conf_check=$(grep -Pi -- '^\h*#*\s*deny\h*=\h*[1-5]\b' /etc/security/faillock.conf)
     if [[ ! "$faillock_conf_check" =~ "deny" ]]; then
         echo "FAIL: deny setting in /etc/security/faillock.conf is not configured or greater than 5"
         audit_result=false
