@@ -1,14 +1,14 @@
 #!/usr/bin/bash
 source utils.sh
-
+source globals.sh
 {
     echo "[REMEDIATION] Ensure password unlock time is configured (5.3.3.1.2)..."
 
-    # Set unlock_time setting in /etc/security/faillock.conf to 900
-    if grep -q "unlock_time" /etc/security/faillock.conf; then
-        sed -i 's/^\s*unlock_time\s*=.*/unlock_time = 900/' /etc/security/faillock.conf
+    # Set unlock_time setting in /etc/security/faillock.conf
+    if grep -q "^\s*#\?\s*unlock_time\s*=" /etc/security/faillock.conf; then
+        sed -i 's/^\s*unlock_time\s*=.*/unlock_time = $SET_UNLOCK_TIME/' /etc/security/faillock.conf
     else
-        echo "unlock_time = 900" >> /etc/security/faillock.conf
+        echo "# unlock_time = $SET_UNLOCK_TIME" >> /etc/security/faillock.conf
     fi
 
     # Remove incorrect unlock_time settings from PAM configuration files
