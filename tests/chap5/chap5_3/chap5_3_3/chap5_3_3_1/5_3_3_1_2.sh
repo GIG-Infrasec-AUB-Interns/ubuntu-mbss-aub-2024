@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 source utils.sh
+source globals.sh
 
 {
     echo "Ensure password unlock time is configured (5.3.3.1.2)..."
@@ -7,14 +8,16 @@ source utils.sh
     audit_result=true
 
     # Check faillock.conf for unlock_time setting
-    faillock_conf_check=$(grep -Pi -- '^\s*#\?\s*unlock_time\h*=\h*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b' /etc/security/faillock.conf)
-    if [[ ! "$faillock_conf_check" =~ "unlock_time" ]]; then
-        echo "FAIL: unlock_time setting in /etc/security/faillock.conf is not configured or less than 900"
+    faillock_conf_check=$(grep -Pi -- '^\s*#?\s*unlock_time\s*=\s*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b' /etc/security/faillock.conf)
+    unlock_time_value=$(echo "$faillock_conf_check" | awk -F '=' '{print $2}' | tr -d ' ')
+
+    if [[ ! "$unlock_time_value" =~ ^[0-9]+$ ]] || [[ "$unlock_time_value" -lt "$SET_UNLOCK_TIME" ]]; then
+        echo "FAIL: unlock_time setting in /etc/security/faillock.conf is not configured or less than $SET_UNLOCK_TIME"
         audit_result=false
     fi
 
     # Check common-auth for incorrect unlock_time settings
-    common_auth_check=$(grep -Pi -- '^\h*auth\h+(requisite|required|sufficient)\h+pam_faillock\.so\h+([^#\n\r]+\h+)?unlock_time\h*=\h*([1-9]|[1-9][0-9]|[1-8][0-9][0-9])\b' /etc/pam.d/common-auth)
+    common_auth_check=$(grep -Pi -- '^\s*auth\s+(requisite|required|sufficient)\s+pam_faillock\.so\s+([^#\n\r]+\s+)?unlock_time\s*=\s*([1-9]|[1-9][0-9]|[1-8][0-9][0-9])\b' /etc/pam.d/common-auth)
     if [[ "$common_auth_check" ]]; then
         echo "FAIL: unlock_time setting in /etc/pam.d/common-auth is incorrectly configured"
         audit_result=false
