@@ -8,7 +8,7 @@ IDLE_DELAY_THRESH=900 # idle delay should be LEQ than this (in seconds). edit as
 TIME_SYNCH=""
 
 # used for section 5.3
-SET_MINPW_LENGTH=14 # minimum password 
+SET_MINLEN=14 # minimum password length (in characters)
 # password complexity configurations
 MINCLASS=3
 DCREDIT=-1

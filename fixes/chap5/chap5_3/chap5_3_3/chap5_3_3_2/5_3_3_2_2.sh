@@ -1,12 +1,13 @@
 #!/usr/bin/bash
 source utils.sh
+source globals.sh
 
 {
     echo "[REMEDIATION] Ensure minimum password length is configured (5.3.3.2.2)..."
 
     sed -ri 's/^\s*minlen\s*=/# &/' /etc/security/pwquality.conf
     [ ! -d /etc/security/pwquality.conf.d/ ] && mkdir /etc/security/pwquality.conf.d/
-    printf '\n%s' "minlen = 14" > /etc/security/pwquality.conf.d/50-pwlength.conf
+    printf '\n%s' "minlen = $SET_MINLEN" > /etc/security/pwquality.conf.d/50-pwlength.conf
 
     grep_query=$(grep -Pl -- '\bpam_pwquality\.so\h+([^#\n\r]+\h+)?minlen\b' /usr/share/pam-configs/)
 

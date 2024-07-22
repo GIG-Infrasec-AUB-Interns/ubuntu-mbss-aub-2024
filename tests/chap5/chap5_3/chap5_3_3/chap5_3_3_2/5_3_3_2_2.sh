@@ -10,10 +10,10 @@ source globals.sh
     grep_query=$(grep -Pi -- '^\h*minlen\h*=\h*\d+\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf)
     pw_length=$(echo "$grep_query" | awk -F '=' '{print $2}' | tr -d ' ')
 
-    if [[ -n "$pw_length" && "$pw_length" -ge $SET_MINPW_LENGTH ]]; then
+    if [[ -n "$pw_length" && "$pw_length" -ge $SET_MINLEN ]]; then
         echo "PASS: Minimum password length is set to $pw_length."
     else    
-        echo "FAIL: Minimum password length is less than $SET_MINPW_LENGTH."
+        echo "FAIL: Minimum password length is less than $SET_MINLEN."
         echo "$grep_query"
         fail_flag=1
     fi
@@ -24,7 +24,7 @@ source globals.sh
     if [[ -z "$grep_query2" ]]; then
         echo "PASS: No incorrect minlen settings found in PAM configuration."
     else
-        echo "FAIL: minlen is not set OR is less than $SET_MINPW_LENGTH in PAM configuration."
+        echo "FAIL: minlen is not set OR is less than $SET_MINLEN in PAM configuration."
         echo "$grep_query2"
         fail_flag=1
     fi
