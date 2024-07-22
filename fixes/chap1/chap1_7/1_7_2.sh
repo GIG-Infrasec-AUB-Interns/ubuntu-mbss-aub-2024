@@ -16,7 +16,7 @@
 
     if [ -n "$l_pkgoutput" ]; then
         l_gdmprofile="gdm" # Set this to desired profile name IaW Local site policy
-        l_bmessage="'Authorized uses only. All activity may be monitored and reported'" # Set to desired banner message
+        l_bmessage="'Authorized uses only. All activity may be monitored and reported by AUB.'" # Set to desired banner message
     
         if [ ! -f "/etc/dconf/profile/$l_gdmprofile" ]; then
             echo "Creating profile \"$l_gdmprofile\""
