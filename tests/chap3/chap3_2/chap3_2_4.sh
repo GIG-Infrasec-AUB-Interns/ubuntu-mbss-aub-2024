@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 source utils.sh
 
+# 3.2.4 Ensure sctp kernel module is not available
 {
     l_output="" l_output2="" l_output3="" l_dl="" # Unset output variables
     l_mname="sctp" # set module name
