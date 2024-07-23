@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source utils.sh
 {
     l_output="" l_output2=""
     perm_mask='0177' && maxperm="$( printf '%o' $(( 0777 & ~$perm_mask)) )"

@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*MaxAuthTries\b/d; /^\s*Include\b/i MaxAuthTries 4' /etc/ssh/sshd_config

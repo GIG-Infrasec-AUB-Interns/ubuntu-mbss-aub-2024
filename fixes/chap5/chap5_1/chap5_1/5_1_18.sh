@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*MaxStartups\b/d; /^\s*Include\b/i MaxStartups 10:30:60' /etc/ssh/sshd_config

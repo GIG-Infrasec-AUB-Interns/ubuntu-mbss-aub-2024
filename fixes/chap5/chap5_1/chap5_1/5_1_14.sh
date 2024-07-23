@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*LogLevel\b/d; /^\s*Include\b/i LogLevel VERBOSE' /etc/ssh/sshd_config

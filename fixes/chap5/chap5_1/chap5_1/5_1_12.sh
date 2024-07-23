@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*Include\b/i KexAlgorithms -diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1' /etc/ssh/sshd_config

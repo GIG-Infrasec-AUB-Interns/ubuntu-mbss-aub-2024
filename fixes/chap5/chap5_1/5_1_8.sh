@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*DisableForwarding\b/d; /^\s*Include\b/i DisableForwarding yes' /etc/ssh/sshd_config

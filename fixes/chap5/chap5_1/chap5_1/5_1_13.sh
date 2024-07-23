@@ -1,0 +1,1 @@
+sudo sed -i '/^\s*LoginGraceTime\b/d; /^\s*Include\b/i LoginGraceTime 60' /etc/ssh/sshd_config

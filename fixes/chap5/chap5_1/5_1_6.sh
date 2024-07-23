@@ -1,0 +1,2 @@
+sudo sed -i '/^\s*Ciphers\b/ { s/.*/Ciphers -3des-cbc,aes128-cbc,aes192-cbc,aes256-cbc,chacha20-poly1305@openssh.com/; }' /etc/ssh/sshd_config
+echo "Add 'Ciphers -3des-cbc,aes128-cbc,aes192-cbc,aes256-cbc,chacha20- poly1305@openssh.com' to the /etc/ssh/sshd_config file"
