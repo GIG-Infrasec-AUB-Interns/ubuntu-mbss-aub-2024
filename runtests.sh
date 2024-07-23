@@ -41,9 +41,9 @@ runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_7/*.sh
 
 
 # 1.3 Mandatory Access Control   # test 1.3.2 is problematic, grub not updating
-# echo "Testing Mandatory Access Control (1.3)..."
-# echo "Testing AppArmor configuration (1.3.1)..."
-# runTests ./tests/chap1/chap1_3/chap1_3_1/*.sh
+echo "Testing Mandatory Access Control (1.3)..."
+echo "Testing AppArmor configuration (1.3.1)..."
+runTests ./tests/chap1/chap1_3/chap1_3_1/*.sh
 
 # 1.4 Testing configuration of bootloader # test 1.4.1 is problematic, password seemingly not updating
 # echo "Testing config of bootloader (1.4)..."

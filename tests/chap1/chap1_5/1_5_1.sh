@@ -59,5 +59,7 @@ source utils.sh
     else
         echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
+        
+        echo "For remediation, Set the following parameter in /etc/sysctl.conf or a file in /etc/sysctl.d/ ending in .conf:\nkernel.randomize_va_space = 2"
     fi
 }
