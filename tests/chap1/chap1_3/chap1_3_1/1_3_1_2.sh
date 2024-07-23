@@ -5,8 +5,8 @@ source utils.sh
 
 {
     echo "Ensuring AppArmor is enabled in the bootloader configuration (1.3.1.2)..."
-    apparmor_param_output=$(grep "^\s*linux" /boot/grub/grub.cfg | grep -v "apparmor=1")
-    security_param_output=$(grep "^\s*linux" /boot/grub/grub.cfg | grep -v "security=apparmor")
+    apparmor_param_output=$(grep "^\s*linux$" /boot/grub/grub.cfg | grep -v "apparmor=1")
+    security_param_output=$(grep "^\s*linux$" /boot/grub/grub.cfg | grep -v "security=apparmor")
 
     if [[ -z "$apparmor_param_output" ]] && [[ -z "$security_param_output" ]]; then
         echo "apparmor=1 and security=apparmor parameters set"

@@ -40,6 +40,4 @@
     # else
     #     echo "Error: $TEST_SCRIPT is not found."
     # fi
-
-    echo "For more information, please visit https://downloads.cisecurity.org/#/"
 }

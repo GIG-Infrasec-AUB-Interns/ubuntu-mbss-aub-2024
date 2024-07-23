@@ -26,7 +26,7 @@ runTests ./tests/chap1/chap1_1/chap1_1_1/*.sh
 echo "Testing filesystem partitions (1.1.2)..."
 echo "Testing config of /tmp (1.1.2.1)..."
 runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_1/*.sh
-echo "Testing config of /dev/shm (1.1.2.2)..."             # test 1.1.2.2.4 problematic, not updating noexec field
+echo "Testing config of /dev/shm (1.1.2.2)..."            
 runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_2/*.sh
 echo "Testing config of /home (1.1.2.3)..."
 runTests ./tests/chap1/chap1_1/chap1_1_2/chap1_1_2_3/*.sh
