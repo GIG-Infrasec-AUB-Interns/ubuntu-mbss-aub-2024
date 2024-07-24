@@ -2,11 +2,20 @@
 source utils.sh
 
 {
-    echo "Ensuring address space layout randomization is enabled (1.5.1)..."
+    echo "Ensuring core dumps are restricted (1.5.3)..."
+    fail_flag=0
+    grep_output=$(grep -Ps -- '^\h*\*\h+hard\h+core\h+0\b' /etc/security/limits.conf /etc/security/limits.d/*)
+
+    if [[ $grep_output | grep "* hard core 0" ]]; then
+        echo "PASS: * hard core 0 is set"
+    else
+        echo "FAIL: * hard core 0 is NOT set"
+        fail_flag=1
+    fi
+
     l_output="" l_output2=""
-    a_parlist=(kernel.randomize_va_space=2)
+    a_parlist=("fs.suid_dumpable=0")
     l_ufwscf="$([ -f /etc/default/ufw ] && awk -F= '/^\s*IPT_SYSCTL=/ {print $2}' /etc/default/ufw)"
-    
     kernel_parameter_chk() { 
         l_krp="$(sysctl "$l_kpname" | awk -F= '{print $2}' | xargs)" # Check running configuration
         if [ "$l_krp" = "$l_kpvalue" ]; then
@@ -15,7 +24,6 @@ source utils.sh
             l_output2="$l_output2\n - \"$l_kpname\" is incorrectly set to \"$l_krp\" in the running configuration and should have a value of: \"$l_kpvalue\""
         fi
         unset A_out; declare -A A_out # Check durable setting (files)
-        
         while read -r l_out; do
             if [ -n "$l_out" ]; then
                 if [[ $l_out =~ ^\s*# ]]; then
@@ -26,13 +34,11 @@ source utils.sh
                 fi
             fi
         done < <(/usr/lib/systemd/systemd-sysctl --cat-config | grep -Po '^\h*([^#\n\r]+|#\h*\/[^#\n\r\h]+\.conf\b)')
-        
         if [ -n "$l_ufwscf" ]; then # Account for systems with UFW (Not covered by systemd-sysctl --cat-config)
             l_kpar="$(grep -Po "^\h*$l_kpname\b" "$l_ufwscf" | xargs)"
             l_kpar="${l_kpar//\//.}"
             [ "$l_kpar" = "$l_kpname" ] && A_out+=(["$l_kpar"]="$l_ufwscf")
         fi
-        
         if (( ${#A_out[@]} > 0 )); then # Assess output from files and generate output
             while IFS="=" read -r l_fkpname l_fkpvalue; do
                 l_fkpname="${l_fkpname// /}"; l_fkpvalue="${l_fkpvalue// /}"
@@ -55,11 +61,27 @@ source utils.sh
         fi
     done < <(printf '%s\n' "${a_parlist[@]}")
     if [ -z "$l_output2" ]; then # Provide output from checks
-        echo -e "\n- Audit Result:\n ** PASS **\n$l_output\n"
+        echo -e "\n- Partial Result:\n ** PASS **\n$l_output\n"
     else
-        echo -e "\n- Audit Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
+        echo -e "\n- Partial Result:\n ** FAIL **\n - Reason(s) for audit failure:\n$l_output2\n"
         [ -n "$l_output" ] && echo -e "\n- Correctly set:\n$l_output\n"
-        
-        echo "For remediation, Set the following parameter in /etc/sysctl.conf or a file in /etc/sysctl.d/ ending in .conf:\nkernel.randomize_va_space = 2"
+        fail_flag=1
+    fi
+
+    systemctl_output=$(systemctl list-unit-files | grep coredump)
+
+    if [[ -z $systemctl_output ]]; then
+        echo "FAIL: systemd-coredump is NOT installed."
+        fail_flag=1
+    else
+        echo "PASS: systemd-coredump is installed."
+    fi
+
+    if [[ $fail_flag -eq 1 ]]; then
+        echo "Audit Result: PASS"
+    else
+        echo "Audit Result: FAIL"
+        echo "For remediation, add the following parameter in /etc/sysctl.conf or a file in /etc/sysctl.d/ ending in .conf:\nfs.suid_dumpable = 0"
+        echo "Then, run the following command to set the active kernel parameter\n # sysctl -w fs.suid_dumpable=0"
     fi
 }

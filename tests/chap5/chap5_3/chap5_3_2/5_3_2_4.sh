@@ -17,6 +17,6 @@ source utils.sh
         echo "Audit Result: PASS"
     else
         echo "Audit Result: FAIL"
-        runFix "5.3.2.4" fixes/chap5/chap5_3/chap5_3_2_4.sh
+        runFix "5.3.2.4" fixes/chap5/chap5_3/chap5_3_2/5_3_2_4.sh
     fi
 }

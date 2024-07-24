@@ -8,7 +8,7 @@ source utils.sh
     [ ! -d /etc/security/pwquality.conf.d/ ] && mkdir /etc/security/pwquality.conf.d/
     printf '\n%s' "difok = 2" > /etc/security/pwquality.conf.d/50-pwdifok.conf
 
-    grep_query=$(grep -Pl -- '\bpam_pwquality\.so\h+([^#\n\r]+\h+)?difok\b' /usr/share/pamconfigs/*)
+    grep_query=$(grep -Pl -- '\bpam_pwquality\.so\h+([^#\n\r]+\h+)?difok\b' /usr/share/pam-configs/*)
 
     for file in $grep_query; do
         sed -ri 's/^\h*pam_pwquality\.so\h+([^#\n\r]+\h+)?difok\b/# &/' "$file"
